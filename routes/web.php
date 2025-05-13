@@ -23,9 +23,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
 });
 
-Route::fallback(function () {
-    return view('errors.404');
-});
-
-Route::fallback([ErrorController::class, 'error404User'])->name('error404');
+Route::fallback([ErrorController::class, 'handle'])->name('fallback');
 

@@ -6,13 +6,12 @@ use Illuminate\Http\Request;
 
 class ErrorController extends Controller
 {
-    public function error404Admin()
+    public function handle(Request $request)
     {
-        return view('admin.pages.error.error-404');
-    }
-    
-    public function error404User()
-    {
-        return view('user.pages.error.error-404');
+        if ($request->is('admin/*')) {
+            return response()->view('admin.pages.error.error-404', [], 404);
+        }
+
+        return response()->view('user.pages.error.error-404', [], 404);
     }
 }

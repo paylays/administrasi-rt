@@ -25,7 +25,12 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create'])
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
     ->middleware('guest');
+    
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('logout');
 
+    
 // Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
 //     ->middleware('guest')
 //     ->name('password.request');
@@ -62,6 +67,3 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store'])
 //     ->middleware('auth');
 
 
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-    ->middleware('auth')
-    ->name('logout');

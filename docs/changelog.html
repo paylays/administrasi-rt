@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Changelog | Template </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="app.js"></script>
+</head>
+
+<body class="text-gray-800" style='font-family: "Montserrat", sans-serif;'>
+
+  <div class="flex wrapper">
+
+    <app-menu></app-menu>
+
+    <div class="flex flex-col w-full bg-gray-50">
+
+      <div class="container mx-auto grow">
+
+        <main class="w-full p-6">
+          <!-- Page Title Start -->
+          <div class="flex justify-between items-center mb-6">
+            <h4 class="text-slate-900 text-lg font-medium">Changelog</h4>
+
+          </div>
+          <!-- Page Title End -->
+
+          <div class="flex flex-col gap-6">
+            <div class="border border-gray-200 rounded-lg bg-white">
+              <div class="p-6">
+                <div class="flex items-baseline gap-2 mb-3">
+                  <h3 class="text-xl font-bold">v1.0</h3>
+                  <h4 class="text-blue-500">(First)</h4>
+                </div>
+                <ul class="list-disc ps-4">
+                  <li>Initial Release</li>
+                </ul>
+
+              </div>
+            </div>
+
+          </div>
+        </main>
+
+      </div>
+
+      <app-footer></app-footer>
+
+    </div>
+
+  </div>
+
+  <!-- App Js -->
+  <script src="app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Installation | Template </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="app.js"></script>
+</head>
+
+<body class="text-gray-800" style='font-family: "Montserrat", sans-serif;'>
+
+  <div class="flex wrapper">
+
+    <app-menu></app-menu>
+
+    <div class="flex flex-col w-full bg-gray-50">
+
+      <div class="container mx-auto grow">
+
+        <main class="w-full p-6">
+          <!-- Page Title Start -->
+          <div class="flex justify-between items-center mb-6">
+            <h4 class="text-slate-900 text-lg font-medium">Installation</h4>
+          </div>
+          <!-- Page Title End -->
+
+          <div class="flex flex-col gap-6">
+            <div class="border border-gray-200 rounded-lg bg-white">
+
+              <div class="p-6 pb-0">
+                <h6 class="mb-2.5 text-base font-semibold">Getting Started</h6>
+                <p class="mb-4 text-gray-800">
+                  The Laravel framework has a few system requirements. Of
+                  course, all of these requirements are satisfied by the
+                  <a href="https://laravel.com/docs/10.x/homestead" target="_blank">
+                    <code class="text-blue-500">Laravel Homestead</code>
+                  </a>
+                  virtual machine, so it's highly recommended that you use
+                  Homestead as your local Laravel development environment.
+                </p>
+                <p class="text-gray-800">
+                  However, if you are not using Homestead, you will need to
+                  make sure your server meets the following requirements:
+                </p>
+              </div>
+
+              <div class="p-6">
+                <h6 class="mb-2.5 text-base font-semibold">Prerequisites</h6>
+                <p class="mb-4 text-gray-800">Please follow below steps to install and setup all prerequisites:</p>
+
+                <ul class="ps-8 list-disc">
+                  <li class="my-2.5"><a class="text-blue-500" href="https://www.php.net/" target="_blank">PHP</a> &gt;= 8.2</li>
+                  <li class="my-2.5">BCMath PHP Extension</li>
+                  <li class="my-2.5">Ctype PHP Extension</li>
+                  <li class="my-2.5">Fileinfo PHP extension</li>
+                  <li class="my-2.5">JSON PHP Extension</li>
+                  <li class="my-2.5">Mbstring PHP Extension</li>
+                  <li class="my-2.5">OpenSSL PHP Extension</li>
+                  <li class="my-2.5">PDO PHP Extension</li>
+                  <li class="my-2.5">Tokenizer PHP Extension</li>
+                  <li class="my-2.5">XML PHP Extension</li>
+                  <li class="">
+                    <p class="my-2.5">Composer</p>
+                    <p class="mb-3.5 text-gray-800">Make sure you have the Composer installed & running on your computer. If you already have installed Composer on your computer, you can skip this step.</p>
+                    <a href="https://getcomposer.org/" target="_blank" class="text-blue-500">Download
+                      Composer</a>
+                  </li>
+                  <li class="">
+                    <p class="my-2.5">Node.js</p>
+                    <p class="mb-3.5 text-gray-800">In order to use build tools you will need to download
+                      and install Node.js. If you do not have Node.js installed already,
+                      you can get it by downloading the package installer from the
+                      official website. Please download the stable version of Node.js
+                      (LTS).</p><a href="https://nodejs.org/en/download" target="_blank" class="text-blue-500">Download
+                      Node.js</a>
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+
+            <div class="border border-gray-200 rounded-lg bg-white">
+              <div class="p-6">
+                <h6 class="mb-2.5 text-base font-semibold">Installation</h6>
+
+                <p class="text-gray-800">To setup, follow the below mentioned steps:</p>
+                <p class="mb-4 text-gray-800">You can run the following commands to run project locally or
+                  build for production use:</p>
+                <p class="mb-4 text-gray-800">You can run this app using one of these package managers: <strong>Bun</strong>, <strong>Yarn</strong> or <strong>NPM</strong></p>
+
+                <div class="mt-3">
+                  <p class="mb-1"><span class="font-semibold text-blue-500">1. Bun </span>(Recommended for mac and Linux OS)</p>
+                  <p class="mb-2 text-gray-800">If you don't have <strong>bun</strong> installed on your PC, use the <code class="text-cyan-500">npm i -g bun</code> or <code class="text-cyan-500">sudo npm i -g bun </code> to install</p>
+                  <div class="shadow-sm overflow-hidden ring-1 ring-gray-200 rounded-md mt-3">
+                    <table class="min-w-full divide-y divide-gray-200">
+                      <thead>
+                        <tr>
+                          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Command</th>
+                          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
+                        </tr>
+                      </thead>
+                      <tbody class="divide-y divide-gray-200">
+                        <tr>
+                          <td class="px-6 py-4 text-sm whitespace-nowrap font-medium">
+                            <code class="text-cyan-500">bun i</code><br>
+                          </td>
+                          <td class="px-6 py-4 text-sm font-medium text-gray-800">
+                            This would install all required dependencies
+                            in <code class="text-cyan-500">node_modules</code> folder.
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="px-6 py-4 text-sm whitespace-nowrap font-medium">
+                            <code class="text-cyan-500">bun dev</code>
+                          </td>
+                          <td class="px-6 py-4 text-sm font-medium text-gray-800">
+                            Runs the project locally, starts the development server.
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="px-6 py-4 text-sm whitespace-nowrap font-medium">
+                            <code class="text-cyan-500">bun run build</code>
+                          </td>
+                          <td class="px-6 py-4 text-sm font-medium text-gray-800">It bundles
+                            with production mode. Your app is now ready to be deployed.
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="mt-5 pt-5">
+                  <p class="mb-1"><span class="font-semibold text-blue-500">2. Yarn</span></p>
+                  <p class="mb-2 text-gray-800">If you don't have <strong>yarn</strong> installed on your PC, use the next command <code class="text-cyan-500">npm i -g yarn</code> or <code class="text-cyan-500">sudo npm i -g yarn </code> </p>
+                  <div class="shadow-sm overflow-hidden ring-1 ring-gray-200  rounded-md mt-3">
+                    <table class="min-w-full divide-y divide-gray-200">
+                      <thead>
+                        <tr>
+                          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Command</th>
+                          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
+                        </tr>
+                      </thead>
+                      <tbody class="divide-y divide-gray-200">
+                        <tr>
+                          <td class="px-6 py-4 text-sm whitespace-nowrap font-medium">
+                            <code class="text-cyan-500">yarn</code><br>
+                          </td>
+                          <td class="px-6 py-4 text-sm font-medium text-gray-800">
+                            This would install all required dependencies
+                            in <code class="text-cyan-500">node_modules</code> folder.
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="px-6 py-4 text-sm whitespace-nowrap font-medium">
+                            <code class="text-cyan-500">yarn dev</code>
+                          </td>
+                          <td class="px-6 py-4 text-sm font-medium text-gray-800">
+                            Runs the project locally, starts the development server.
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="px-6 py-4 text-sm whitespace-nowrap font-medium">
+                            <code class="text-cyan-500">yarn build</code>
+                          </td>
+                          <td class="px-6 py-4 text-sm font-medium text-gray-800">It bundles
+                            with production mode. Your app is now ready to be deployed.
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="mt-5 pt-5">
+                  <p class="mb-1"><span class="font-semibold text-blue-500">3. NPM</span></p>
+                  <p class="mb-2 text-gray-800"><strong>npm</strong> comes preinstalled when you install Nodejs </p>
+                  <div class="shadow-sm overflow-hidden ring-1 ring-gray-200  rounded-md mt-3">
+                    <table class="min-w-full divide-y divide-gray-200">
+                      <thead>
+                        <tr>
+                          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Command</th>
+                          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
+                        </tr>
+                      </thead>
+                      <tbody class="divide-y divide-gray-200">
+                        <tr>
+                          <td class="px-6 py-4 text-sm whitespace-nowrap font-medium">
+                            <code class="text-cyan-500">npm i </code> OR <code class="text-cyan-500"> &nbsp;npm i --force</code><br>
+                          </td>
+                          <td class="px-6 py-4 text-sm font-medium text-gray-800">
+                            This would install all required dependencies
+                            in <code class="text-cyan-500">node_modules</code> folder.
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="px-6 py-4 text-sm whitespace-nowrap font-medium">
+                            <code class="text-cyan-500">npm run dev</code>
+                          </td>
+                          <td class="px-6 py-4 text-sm font-medium text-gray-800">
+                            Runs the project locally, starts the development server.
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="px-6 py-4 text-sm whitespace-nowrap font-medium">
+                            <code class="text-cyan-500">npm run build</code>
+                          </td>
+                          <td class="px-6 py-4 text-sm font-medium text-gray-800">It bundles
+                            with production mode. Your app is now ready to be deployed.
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <p class="text-gray-800 mt-6">To spin up the Laravel server, follow the below mentioned steps in a separate terminal:</p>
+                <div class="shadow-sm overflow-hidden ring-1 ring-gray-200 rounded-md mt-3">
+                  <table class="min-w-full divide-y divide-gray-200">
+                    <thead>
+                      <tr>
+                        <th class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase">Command</th>
+                        <th class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                      <tr>
+                        <td class="px-6 py-4 text-sm whitespace-nowrap font-medium">
+                          <code class="text-cyan-500">composer i</code><br>
+                        </td>
+                        <td class="px-6 py-4 text-sm font-medium text-gray-800">
+                          This will install all required dependencies in
+                          <code class="text-cyan-500">vendor</code> folder.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="px-6 py-4 text-sm whitespace-nowrap font-medium">
+                          <code class="text-cyan-500">cp .env.example .env</code><br>
+                        </td>
+                        <td class="px-6 py-4 text-sm font-medium text-gray-800">
+                          This will copy .env.example as .env file.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="px-6 py-4 text-sm whitespace-nowrap font-medium">
+                          <code class="text-cyan-500">php artisan key:generate</code><br>
+                        </td>
+                        <td class="px-6 py-4 text-sm font-medium text-gray-800">
+                          This will generate a unique key and write it in your .env file
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="px-6 py-4 text-sm whitespace-nowrap font-medium">
+                          <code class="text-cyan-500">php artisan migrate</code><br>
+                        </td>
+                        <td class="px-6 py-4 text-sm font-medium text-gray-800">
+                          This will executes all pending migrations to database.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="px-6 py-4 text-sm whitespace-nowrap font-medium">
+                          <code class="text-cyan-500">php artisan db:seed</code><br>
+                        </td>
+                        <td class="px-6 py-4 text-sm font-medium text-gray-800">
+                          Creates a dummy user into your database for authentication
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="px-6 py-4 text-sm whitespace-nowrap font-medium">
+                          <code class="text-cyan-500">php artisan serve</code><br>
+                        </td>
+                        <td class="px-6 py-4 text-sm font-medium text-gray-800">
+                          Runs the project locally, starts the development server on <a href="http://127.0.0.1:8000" target="_blank" class="text-cyan-500">http://127.0.0.1:8000</a>.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+
+
+          </div>
+        </main>
+
+      </div>
+
+
+      <app-footer></app-footer>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>

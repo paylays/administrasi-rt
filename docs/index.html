@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Introduction | Template </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="app.js"></script>
+</head>
+
+<body class="text-gray-800" style='font-family: "Montserrat", sans-serif;'>
+
+  <div class="flex wrapper">
+
+    <app-menu></app-menu>
+
+    <div class="flex flex-col w-full bg-gray-50">
+
+      <div class="container mx-auto grow">
+
+        <main class="w-full p-6">
+          <!-- Page Title Start -->
+          <div class="flex justify-between items-center mb-6">
+            <h4 class="text-slate-900 text-lg font-medium">Introduction</h4>
+          </div>
+          <!-- Page Title End -->
+
+          <div class="flex flex-col gap-6">
+            <div class="border border-gray-200 rounded-lg bg-white">
+              <div class="p-6">
+                <p class="text-gray-800">
+                  Hey there, welcome to the Documentation. Here you'll
+                  find everything you'll need to get started.
+                </p>
+                <p class="mt-3">It is built using <strong class="text-red-500">Tailwindcss v3</strong>,
+                  <strong class="text-red-500">PHP v8.2</strong>
+                  and <strong class="text-red-500">Laravel v11</strong>
+                </p>
+                <p class="text-gray-800 mt-2 tracking-wide">
+                  All the pages are
+                  easily customizable as per your needs. The theme is ULTRA
+                  responsive, so, it doesn't matter at all, what device your
+                  user is using. The user experience will be great in all the
+                  devices. Furthermore, we also tried to implement this by
+                  Keeping the concept of modularity in mind, this enables you
+                  to reduce the development time and cost.
+                </p>
+                <p class="text-gray-800 mt-3  tracking-wide">
+                  This documentation is guidelines for all users who can even
+                  be a beginner or experienced web developer.
+                </p>
+                <p class="text-gray-800 mt-3  tracking-wide">
+                  We really care for our buyers, so in case you are having any
+                  question or feedback, please feel free to get back to us via
+                  email <a href="mailto:support@coderthemes.com" class="text-blue-500">support@coderthemes.com</a> or by
+                  filling out
+                  the contact form on our
+                  <a href="http://coderthemes.com/#contact" class="text-blue-500" target="_blank">website</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </main>
+
+      </div>
+
+
+      <app-footer></app-footer>
+
+    </div>
+
+  </div>
+
+
+</body>
+
+</html>

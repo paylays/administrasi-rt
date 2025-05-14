@@ -187,12 +187,7 @@
             <div class="card overflow-hidden">
 
                 <!-- Logo -->
-                <div class="p-9 bg-primary">
-                    <a href="#" class="flex justify-center">
-                        <img src="/images/logo.png" alt="logo" class="h-6 block dark:hidden">
-                        <img src="/images/logo-dark.png" alt="logo" class="h-6 hidden dark:block">
-                    </a>
-                </div>
+                <div class="p-7 bg-primary"></div>
 
                 <div class="p-9">
                     <div class="text-center mx-auto w-3/4">
@@ -262,7 +257,7 @@
 <footer class="absolute bottom-0 inset-x-0">
     <p class="font-medium text-center p-6">
         <script>document.write(new Date().getFullYear())</script>
-        © Attex - Coderthemes.com
+        © Kelompok D2 - Kuliah Kerja Nyata
     </p>
 </footer>
 

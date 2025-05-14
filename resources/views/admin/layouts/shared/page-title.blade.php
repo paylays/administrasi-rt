@@ -4,7 +4,7 @@
 
     <div class="md:flex hidden items-center gap-2.5 font-semibold">
         <div class="flex items-center gap-2">
-            <a href="#" class="text-sm font-medium text-slate-700 dark:text-slate-400">Attex</a>
+            <a href="{{ route('admin.dashboard') }}" class="text-sm font-medium text-slate-700 dark:text-slate-400">SI-RT</a>
         </div>
 
         <div class="flex items-center gap-2">

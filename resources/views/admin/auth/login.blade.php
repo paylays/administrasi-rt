@@ -251,7 +251,7 @@
 <footer class="absolute bottom-0 inset-x-0">
     <p class="font-medium text-center p-6">
         <script>document.write(new Date().getFullYear())</script>
-        © Attex - Coderthemes.com
+        © Kelompok D2 - Kuliah Kerja Nyata
     </p>
 </footer>
 

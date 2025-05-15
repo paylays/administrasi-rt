@@ -11,6 +11,24 @@ class Warga extends Model
 
     protected $table = 'warga';
 
+    protected $fillable = [
+        'kk_id',
+        'nik',
+        'nama_lengkap',
+        'jenis_kelamin',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'agama',
+        'pendidikan',
+        'jenis_pekerjaan',
+        'golongan_darah',
+        'status_perkawinan',
+        'status_hubungan_dalam_keluarga',
+        'kewarganegaraan',
+        'nama_ayah',
+        'nama_ibu',
+    ];
+
     public function kk()
     {
         return $this->belongsTo(Kk::class, 'kk_id');

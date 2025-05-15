@@ -19,6 +19,11 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     })->name('admin.dashboard');
 
     Route::get('/data-warga', [WargaController::class, 'index'])->name('admin.data-warga');
+    Route::get('/data-warga/create', [WargaController::class, 'create'])->name('admin.data-warga.create');
+    Route::post('/data-warga/store', [WargaController::class, 'store'])->name('admin.data-warga.store');
+    Route::get('/data-warga/{id}/edit', [WargaController::class, 'edit'])->name('admin.data-warga.edit');
+    Route::put('/data-warga/{id}', [WargaController::class, 'update'])->name('admin.data-warga.update');
+    Route::delete('/data-warga/{id}', [WargaController::class, 'destroy'])->name('admin.data-warga.destroy');
 
     Route::get('/kartu-keluarga', [KartuKeluargaController::class, 'index'])->name('admin.kartu-keluarga');
 

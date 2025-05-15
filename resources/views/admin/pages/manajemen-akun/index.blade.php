@@ -27,7 +27,7 @@
 
 <div class="grid xl:grid-cols-12 grid-cols-1 gap-6">
 
-    <!-- Tabel Warga -->
+    <!-- Tabel Akun Warga -->
     <div class="xl:col-span-8">
         <div class="card">
             <div class="p-6">

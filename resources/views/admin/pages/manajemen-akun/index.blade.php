@@ -71,8 +71,24 @@
                                                 data-updated="{{ $item->updated_at->format('d-m-Y') }}">
                                                 <i class="ri-file-info-fill text-xl text-info"></i>
                                             </a>
-                                            <a href="#"><i class="ri-edit-box-fill text-xl text-warning"></i></a>
-                                            <a href="#"><i class="ri-delete-bin-2-fill text-xl text-danger"></i></a>
+                                            <a href="javascript:void(0)"
+                                                class="open-edit-modal"
+                                                data-fc-target="user-edit-modal"
+                                                data-fc-type="modal"
+                                                data-id="{{ $item->id }}"
+                                                data-nik="{{ $item->nik ?? '' }}"
+                                                data-name="{{ $item->name }}"
+                                                data-email="{{ $item->email }}">
+                                                <i class="ri-edit-box-fill text-xl text-warning"></i>
+                                            </a>
+                                            <a href="javascript:void(0)"
+                                                class="open-delete-modal"
+                                                data-fc-target="user-delete-modal"
+                                                data-fc-type="modal"
+                                                data-id="{{ $item->id }}"
+                                                data-email="{{ $item->email }}">
+                                                <i class="ri-delete-bin-2-fill text-xl text-danger"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                     @empty
@@ -95,29 +111,11 @@
         </div> <!-- end card -->
     </div>
 
-    <div id="user-detail-modal" class="w-full h-full fixed top-0 left-0 z-50 transition-all duration-500 hidden overflow-y-auto">
-        <div class="-translate-y-5 fc-modal-open:translate-y-0 fc-modal-open:opacity-100 opacity-0 duration-300 ease-in-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto flex flex-col bg-white shadow-sm rounded dark:bg-gray-800">
-            <div class="flex justify-between items-center py-2.5 px-4 border-b dark:border-gray-700">
-                <h3 class="font-medium text-gray-600 dark:text-white text-lg">
-                    Detail Akun Warga
-                </h3>
-                <button class="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 dark:text-gray-200" data-fc-dismiss type="button">
-                    <i class="ri-close-line text-2xl"></i>
-                </button>
-            </div>
-            <div class="p-4 overflow-y-auto text-sm space-y-3">
-                <p><strong>NIK:</strong> <span id="modal-nik"></span></p>
-                <p><strong>Nama:</strong> <span id="modal-name"></span></p>
-                <p><strong>Email:</strong> <span id="modal-email"></span></p>
-                <p><strong>Tanggal Dibuat:</strong> <span id="modal-created"></span></p>
-                <p><strong>Tanggal Diubah:</strong> <span id="modal-updated"></span></p>
-            </div>
-            <div class="flex justify-end items-center gap-2 p-4 border-t dark:border-slate-700">
-                <button class="btn bg-light text-gray-800 transition-all" data-fc-dismiss type="button">Tutup</button>
-            </div>
-        </div>
-    </div>
+    @include('admin.pages.manajemen-akun.detail')
 
+    @include('admin.pages.manajemen-akun.edit')
+
+    @include('admin.pages.manajemen-akun.delete')
 
     <!-- Form Tambah Warga -->
     <div class="col-span-4">
@@ -172,18 +170,39 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const buttons = document.querySelectorAll('.open-detail-modal');
-        buttons.forEach(btn => {
+        // Detail Modal
+        const detailButtons = document.querySelectorAll('.open-detail-modal');
+        detailButtons.forEach(btn => {
             btn.addEventListener('click', function () {
-                document.getElementById('modal-nik').textContent = this.dataset.nik;
-                document.getElementById('modal-name').textContent = this.dataset.name;
-                document.getElementById('modal-email').textContent = this.dataset.email;
-                document.getElementById('modal-created').textContent = this.dataset.created;
-                document.getElementById('modal-updated').textContent = this.dataset.updated;
+                document.getElementById('detail-nik').textContent = this.dataset.nik;
+                document.getElementById('detail-name').textContent = this.dataset.name;
+                document.getElementById('detail-email').textContent = this.dataset.email;
+                document.getElementById('detail-created').textContent = this.dataset.created;
+                document.getElementById('detail-updated').textContent = this.dataset.updated;
+            });
+        });
+
+        // Edit Modal
+        const editButtons = document.querySelectorAll('.open-edit-modal');
+        editButtons.forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.getElementById('edit-id').value = this.dataset.id;
+                document.getElementById('edit-nik').value = this.dataset.nik;
+                document.getElementById('edit-name').value = this.dataset.name;
+                document.getElementById('edit-email').value = this.dataset.email;
+            });
+        });
+
+        // Delete Modal
+        const deleteButtons = document.querySelectorAll('.open-delete-modal');
+        deleteButtons.forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.getElementById('delete-id').value = this.dataset.id;
+                document.getElementById('delete-email').textContent = this.dataset.email;
             });
         });
     });
-</script>
 
+</script>
 
 @endsection

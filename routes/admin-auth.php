@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\ManajamenAkunController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\LoginController;
 
 use App\Http\Controllers\Admin\WargaController;
 use App\Http\Controllers\Admin\KartuKeluargaController;
 
+use App\Http\Controllers\Admin\ManajamenAkunController;
 
 Route::prefix('admin')->middleware('guest:admin')->group(function () {
     Route::get('login', [LoginController::class, 'create'])->name('admin.login');
@@ -23,6 +23,8 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('/kartu-keluarga', [KartuKeluargaController::class, 'index'])->name('admin.kartu-keluarga');
 
     Route::get('/manajemen-akun', [ManajamenAkunController::class, 'index'])->name('admin.manajemen-akun');
+    Route::put('/manajemen-akun/update', [ManajamenAkunController::class, 'update'])->name('admin.manajemen-akun.update');
+    Route::delete('/manajemen-akun/delete', [ManajamenAkunController::class, 'destroy'])->name('admin.manajemen-akun.destroy');
     
     Route::post('logout', [LoginController::class, 'destroy'])->name('admin.logout');
 });

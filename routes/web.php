@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\User\DashboardController;
@@ -20,6 +21,8 @@ use App\Http\Controllers\ErrorController;
 
 require __DIR__ . '/auth.php';
 require __DIR__.'/admin-auth.php';
+
+Route::get('/', [HomeController::class, 'index']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');

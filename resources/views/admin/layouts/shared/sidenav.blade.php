@@ -44,6 +44,36 @@
                     <span class="menu-text"> Calendar </span>
                 </a>
             </li>
+
+            <li class="menu-title">Management Data</li>
+            
+            <li class="menu-item">
+                <a href="{{ route('admin.kartu-keluarga') }}" class="menu-link">
+                    <span class="menu-icon">
+                        <i class="ri-group-line"></i>
+                    </span>
+                    <span class="menu-text"> Kartu Keluarga </span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('admin.data-warga') }}" class="menu-link">
+                    <span class="menu-icon">
+                        <i class="ri-account-box-line"></i>
+                    </span>
+                    <span class="menu-text"> Warga </span>
+                </a>
+            </li>
+
+            <li class="menu-title">Pengguna</li>
+            
+            <li class="menu-item">
+                <a href="{{ route('admin.manajemen-akun') }}" class="menu-link">
+                    <span class="menu-icon">
+                        <i class="ri-account-circle-line"></i>
+                    </span>
+                    <span class="menu-text"> Manajemen Akun </span>
+                </a>
+            </li>
         </ul>
 
     </div>

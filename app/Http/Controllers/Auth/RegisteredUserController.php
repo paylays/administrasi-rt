@@ -47,7 +47,7 @@ class RegisteredUserController extends Controller
 
             event(new Registered($user));
 
-            return redirect()->back()->with('success', 'Pendaftaran berhasil. Silahkan login.');
+            return redirect()->back()->with('success', 'Pendaftaran berhasil.');
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->with('error', 'Terjadi kesalahan saat mendaftar. Silakan coba lagi.');
         }

@@ -307,8 +307,6 @@
                 <div class="w-8 h-8 justify-center items-center flex bg-primary rounded-full">
                     <span class="text-white">W</span>
                 </div>
-                <div class="absolute end-0 h-2 w-2 rounded-full border border-white bg-success">
-                </div>
             </div>
             <span class="md:flex flex-col gap-0.5 text-start hidden">
                 <h5 class="text-sm">{{ Auth::user()->name }}</h5>
@@ -320,7 +318,7 @@
             <h6 class="flex items-center py-2 px-3 text-xs text-gray-800 dark:text-gray-400">Welcome !</h6>
 
             <!-- item-->
-            <a href="#" class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+            <a href="{{ route('user.profile') }}" class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <i class="ri-account-circle-line text-lg align-middle"></i>
                 <span>My Account</span>
             </a>

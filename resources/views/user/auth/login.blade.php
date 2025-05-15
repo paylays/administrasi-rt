@@ -212,7 +212,7 @@
 
                         <div class="mb-6 space-y-2">
                             <label for="email" class="font-semibold text-gray-500">Email address</label>
-                            <input class="form-input" type="email" id="email" name="email" placeholder="Enter your email">
+                            <input class="form-input" type="email" id="email" name="email" value="warga@example.com" placeholder="Enter your email">
                         </div>
 
                         <div class="mb-6 space-y-2">
@@ -221,7 +221,7 @@
                             </div>
 
                             <div class="flex items-center">
-                                <input type="password" id="password" name="password"
+                                <input type="password" id="password" name="password" value="warga123"
                                        class="form-input rounded-e-none" placeholder="Enter your password">
                                 <span class="px-3 py-1 border rounded-e-md -ms-px dark:border-white/10"><i
                                         class="ri-eye-line text-lg"></i></span>

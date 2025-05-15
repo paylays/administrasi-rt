@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\AjukanSuratController;
 
 use App\Http\Controllers\ErrorController;
 /*
@@ -21,6 +23,11 @@ require __DIR__.'/admin-auth.php';
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
+    
+    Route::get('/ajukan-surat', [AjukanSuratController::class, 'index'])->name('user.ajukan-surat');
+    
+    Route::get('/profile', [ProfileController::class, 'index'])->name('user.profile');
+    Route::post('/profile/verify-nik', [ProfileController::class, 'verifyNIK'])->name('user.profile.verify-nik');
 });
 
 Route::fallback([ErrorController::class, 'handle'])->name('fallback');

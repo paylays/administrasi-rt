@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    @include('user.layouts.shared/title-meta', ['title' => 'Error 404'])
+    @include('user.layouts.shared/title-meta', ['title' => 'Halo'])
 
     @include('user.layouts.shared/head-css')
 </head>

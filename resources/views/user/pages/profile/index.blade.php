@@ -20,6 +20,10 @@
                 <p class="text-zinc-400 mb-3"><strong>NIK :</strong> 
                     <span class="ms-2 {{ empty($user->nik) ? 'text-red-500 font-semibold underline' : '' }}">
                         {{ !empty($user->nik) ? $user->nik : 'NIK anda kosong. Wajib verifikasi!' }}
+
+                        @if (!empty($user->nik))
+                            <i class="ri-checkbox-multiple-fill text-success ms-1" title="NIK Terverifikasi"></i>
+                        @endif
                     </span>
                 </p> 
                 
@@ -109,7 +113,11 @@
                             <div class="mb-6 space-y-2">
                                 <label for="nik"  class="font-semibold text-sm text-gray-500">Verifikasi NIK</label>
                                 <input type="text" class="form-input" id="nik" name="nik"
-                                        placeholder="Masukkan nik anda" value="{{ old('nik') }}" {{ $nikSudahAda ? 'disabled' : '' }}> 
+                                        placeholder="Masukkan nik anda" value="{{ old('nik') }}" {{ $nikSudahAda ? 'disabled' : '' }}>
+                                        
+                                @if ($nikSudahAda)
+                                    <p class="text-sm text-success"><span>*</span>NIK anda sudah terverifikasi.</p>
+                                @endif
                             </div>
 
                             <div class="text-end">

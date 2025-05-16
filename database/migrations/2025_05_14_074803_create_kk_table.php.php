@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('no_kk', 16)->unique();
             $table->string('nama_kepala_keluarga');
             $table->text('alamat');
-            $table->string('rt_rw', 10)->nullable();
+            $table->string('rt', 10)->nullable();
+            $table->string('rw', 10)->nullable();
             $table->string('desa_kelurahan', 100)->nullable();
             $table->string('kecamatan', 100)->nullable();
             $table->string('kabupaten_kota', 100)->nullable();

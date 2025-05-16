@@ -29,9 +29,12 @@
     <div class="p-6">
 
         <!-- Tabel Warga -->
-        <div class="flex justify-between items-center mb-4">
+
+        <div class="justify-between items-center mb-4">
             <h3 class="card-title mb-4">Table data warga RT.36</h3>
-            <div class="flex gap-2">
+        </div>
+        <div class="text-end mb-4">
+            <div class="inline-flex space-x-2">
                 <a href="{{ route('admin.data-warga.create') }}" class="btn bg-primary text-white">Tambah data</a>
                 <button type="button" class="btn bg-success text-white"><i class="ri-file-excel-line me-1.5"></i>Import</button>
             </div>
@@ -48,23 +51,42 @@
                                 <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">NIK</th>
                                 <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Nama Lengkap</th>
                                 <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Jenis Kelamin</th>
+                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Status Hubungan dalam Keluarga</th>
                                 <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Tanggal Dibuat</th>
                                 <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Tanggal Diubah</th>
                                 <th scope="col" class="px-4 py-4 text-center text-sm font-medium text-gray-500">Action</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700 uppercase">
                             @forelse($warga as $index => $item)
                             <tr>
                                 <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $index + 1 }}</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
-                                    <a href="#" class="text-blue-600 underline">
-                                        {{ $item->kk->no_kk ?? '-' }}
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->kk->no_kk ?? '-' }} 
+                                    <a href="{{ route('admin.kartu-keluarga.detail', $item->kk->id) }}" class="text-primary normal-case">
+                                        <small><i>Lihat kk</i></small>
                                     </a>
                                 </td>
                                 <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->nik }}</td>
                                 <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->nama_lengkap }}</td>
                                 <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->jenis_kelamin }}</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm">
+                                    @switch($item->status_hubungan_dalam_keluarga)
+                                        @case('Kepala Keluarga')
+                                            <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded-md text-xs font-medium bg-success text-white">Kepala Keluarga</span>
+                                            @break
+
+                                        @case('Istri')
+                                            <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded-md text-xs font-medium bg-danger text-white">Istri</span>
+                                            @break
+
+                                        @case('Anak')
+                                            <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded-md text-xs font-medium bg-info text-white">Anak</span>
+                                            @break
+
+                                        @default
+                                            <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded-md text-xs font-medium bg-dark text-white">{{ $item->status_hubungan_dalam_keluarga }}</span>
+                                    @endswitch
+                                </td>
                                 <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->created_at->format('d-m-Y') }}</td>
                                 <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->updated_at->format('d-m-Y') }}</td>
                                 <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200 text-center">
@@ -112,12 +134,15 @@
 
                         </tbody>
                     </table>
-                    <p class="mt-4 text-sm text-gray-600 dark:text-gray-300">
-                        Menampilkan total <span class="font-semibold">{{ $warga->count() }}</span> data warga.
-                    </p>
                 </div>
             </div>
         </div>
+
+        <!-- End Table Warga -->
+
+        <p class="mt-4 text-sm text-gray-600 dark:text-gray-300">
+            Menampilkan total <span class="font-semibold">{{ $warga->count() }}</span> data warga.
+        </p>
     </div>
 </div>
 
@@ -165,7 +190,7 @@
                 document.getElementById('delete-nik').textContent = this.dataset.nik;
                 document.getElementById('delete-nama_lengkap').textContent = this.dataset.nama_lengkap;
 
-                deleteForms.action = `/admin/data-warga/${this.dataset.id}`;
+                deleteForms.action = `/admin/data-warga/delete/${this.dataset.id}`;
             });
         });
     });

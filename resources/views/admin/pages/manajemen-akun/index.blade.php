@@ -25,10 +25,10 @@
     </div>
 @endif
 
-<div class="grid xl:grid-cols-12 grid-cols-1 gap-6">
+<div class="grid lg:grid-cols-12 grid-cols-1 gap-6">
 
     <!-- Tabel Akun Warga -->
-    <div class="xl:col-span-8">
+    <div class="lg:col-span-8">
         <div class="card">
             <div class="p-6">
                 <div class="justify-between items-center mb-4">
@@ -101,12 +101,12 @@
 
                                 </tbody>
                             </table>
-                            <p class="mt-4 text-sm text-gray-600 dark:text-gray-300">
-                                Menampilkan total <span class="font-semibold">{{ $users->count() }}</span> data akun warga.
-                            </p>
                         </div>
                     </div>
                 </div>
+                <p class="mt-4 text-sm text-gray-600 dark:text-gray-300">
+                    Menampilkan total <span class="font-semibold">{{ $users->count() }}</span> data akun warga.
+                </p>
             </div>
         </div> <!-- end card -->
     </div>
@@ -118,12 +118,12 @@
     @include('admin.pages.manajemen-akun.delete')
 
     <!-- Form Tambah Warga -->
-    <div class="col-span-4">
-        <div class="card">
+    <div class="lg:col-span-4">
+        <div class="card h-full min-h-full">
             <div class="card-header">
                 <h3 class="card-title">Tambah Akun Warga</h3>
             </div>
-
+    
             <div class="p-6">
                 <form method="POST" action="{{ route('register') }}">
                 @csrf

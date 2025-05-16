@@ -7,7 +7,7 @@
 
             <div class="flex justify-between items-center py-2.5 px-4 border-b dark:border-gray-700">
                 <h3 class="font-medium text-gray-600 dark:text-white text-lg">
-                    Hapus Akun Warga
+                    Hapus Kartu Keluarga
                 </h3>
                 <button class="inline-flex justify-center items-center h-8 w-8 dark:text-gray-200" data-fc-dismiss type="button">
                     <i class="ri-close-line text-2xl"></i>
@@ -16,12 +16,12 @@
 
             <div class="p-4 space-y-2 text-sm">
                 <p>
-                    <strong>NIK:</strong> <span id="delete-nik" class="uppercase"></span>
+                    <strong>No.KK:</strong> <span id="delete-no_kk" class="uppercase"></span>
                 </p>
                 <p>
-                    <strong>Nama Lengkap:</strong> <span id="delete-nama_lengkap" class="uppercase"></span>
+                    <strong>Nama Kepala Keluarga:</strong> <span id="delete-nama_kepala_keluarga" class="uppercase"></span>
                 </p>
-                <p>Apakah Anda yakin ingin menghapus data warga tersebut?</p>
+                <p>Apakah Anda yakin ingin menghapus kartu keluarga tersebut tersebut?</p>
             </div>
 
             <div class="flex justify-end gap-2 p-4 border-t dark:border-gray-700">

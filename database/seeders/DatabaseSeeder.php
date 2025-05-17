@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             AdminSeeder::class,
+            KkSeeder::class,
+            WargaSeeder::class,
         ]);
     }
 }

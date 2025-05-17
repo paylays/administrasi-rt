@@ -34,18 +34,26 @@
                 </a>
             </li>
             
-            <li class="menu-title">Navigation</li>
+            <li class="menu-title">Manajemen Surat</li>
             
             <li class="menu-item">
                 <a href="#" class="menu-link">
                     <span class="menu-icon">
                         <i class="ri-calendar-event-line"></i>
                     </span>
-                    <span class="menu-text"> Calendar </span>
+                    <span class="menu-text"> Pengajuan Surat </span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <span class="menu-icon">
+                        <i class="ri-calendar-event-line"></i>
+                    </span> 
+                    <span class="menu-text"> Jenis Surat </span>
                 </a>
             </li>
 
-            <li class="menu-title">Management Data</li>
+            <li class="menu-title">Manajemen Data</li>
             
             <li class="menu-item">
                 <a href="{{ route('admin.kartu-keluarga') }}" class="menu-link">

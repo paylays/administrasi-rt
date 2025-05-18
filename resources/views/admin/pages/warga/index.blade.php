@@ -36,7 +36,13 @@
         <div class="text-end mb-4">
             <div class="inline-flex space-x-2">
                 <a href="{{ route('admin.data-warga.create') }}" class="btn bg-primary text-white">Tambah data</a>
-                <button type="button" class="btn bg-success text-white"><i class="ri-file-excel-line me-1.5"></i>Import</button>
+                <a href="javascript:void(0)"
+                    class="open-import-modal btn bg-success text-white"
+                    data-fc-target="user-import-modal"
+                    data-fc-type="modal">
+                    <i class="ri-file-excel-line me-1.5"></i>
+                    Import
+                </a>
             </div>
         </div>
 
@@ -150,6 +156,8 @@
 
 @include('admin.pages.warga.delete')
 
+@include('admin.pages.warga.import')
+
 @endsection
 
 @section('script')
@@ -193,6 +201,10 @@
                 deleteForms.action = `/admin/data-warga/delete/${this.dataset.id}`;
             });
         });
+
+        // Import Modal
+        const importButtons = document.querySelectorAll('.open-import-modal');
+        const importForms = document.getElementById('import-form');
     });
 </script>
 

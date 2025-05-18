@@ -77,7 +77,19 @@
                 {{-- Pendidikan --}}
                 <div class="space-y-2">
                     <label for="pendidikan" class="font-semibold text-gray-500">Pendidikan<span class="text-danger">*</span></label>
-                    <input class="form-input" type="text" id="pendidikan" name="pendidikan" placeholder="Masukkan pendidikan terakhir">
+                    <select class="form-input" name="pendidikan" id="pendidikan">
+                        <option value="">-- Pilih Pendidikan --</option>
+                            <option value="TIDAK/BELUM SEKOLAH">TIDAK/BELUM SEKOLAH</option>
+                            <option value="BELUM TAMAT SD/SEDERAJAT">BELUM TAMAT SD/SEDERAJAT</option>
+                            <option value="TAMAT SD/SEDERAJAT">TAMAT SD/SEDERAJAT</option>
+                            <option value="SLTP/SEDERAJAT">SLTP/SEDERAJAT</option>
+                            <option value="SLTA/ SEDERAJAT">SLTA/ SEDERAJAT</option>
+                            <option value="DIPLOMA I / II">DIPLOMA I / II</option>
+                            <option value="AKADEMI/ DIPLOMA III/S. MUDA">AKADEMI/ DIPLOMA III/S. MUDA</option>
+                            <option value="DIPLOMA IV/ STRATA I">DIPLOMA IV/ STRATA I</option>
+                            <option value="STRATA II">STRATA II</option>
+                            <option value="STRATA III">STRATA III</option>
+                    </select>
                 </div>
 
                 {{-- Pekerjaan --}}

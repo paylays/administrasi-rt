@@ -7,6 +7,8 @@ use App\Models\Warga;
 use App\Models\Kk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Imports\WargaImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class WargaController extends Controller
 {
@@ -19,7 +21,7 @@ class WargaController extends Controller
 
     public function create()
     {
-        $kks = Kk::all();
+        $kks = Kk::orderBy('no_kk', 'asc')->get();
         
         return view('admin.pages.warga.create', compact('kks'));
     }
@@ -122,6 +124,33 @@ class WargaController extends Controller
         } catch (\Exception $e) {
             Log::error('Gagal hapus data warga: ' . $e->getMessage());
             return redirect()->route('admin.data-warga')->with('error', 'Terjadi kesalahan saat menghapus data.');
+        }
+    }
+
+    public function downloadTemplate()
+    {
+        $file = public_path('templates/template_data_warga.xlsx');
+
+        if (!file_exists($file)) {
+            return redirect()->back()->with('error', 'File template tidak ditemukan.');
+        }
+
+        return response()->download($file, 'template_data_warga.xlsx');
+    }
+
+    public function importFile(Request $request)
+    {
+        $request->validate([
+            'file_excel_warga' => 'required|file|mimes:xlsx,xls'
+        ]);
+
+        try {
+            Excel::import(new WargaImport, $request->file('file_excel_warga'));
+
+            return redirect()->route('admin.data-warga')->with('success', 'Data warga berhasil diimpor dari Excel.');
+        } catch (\Exception $e) {
+            \Log::error('Gagal import Excel warga: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat mengimpor file warga.');
         }
     }
 

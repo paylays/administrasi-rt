@@ -24,6 +24,8 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('/data-warga/edit/id={id}', [WargaController::class, 'edit'])->name('admin.data-warga.edit');
     Route::put('/data-warga/update/id={id}', [WargaController::class, 'update'])->name('admin.data-warga.update');
     Route::delete('/data-warga/delete/{id}', [WargaController::class, 'destroy'])->name('admin.data-warga.destroy');
+    Route::get('/data-warga/template-excel', [WargaController::class, 'downloadTemplate'])->name('admin.data-warga.template-excel');
+    Route::post('/data-warga/import-excel', [WargaController::class, 'importFile'])->name('admin.data-warga.import-excel');
 
     Route::get('/kartu-keluarga', [KartuKeluargaController::class, 'index'])->name('admin.kartu-keluarga');
     Route::get('/kartu-keluarga/create', [KartuKeluargaController::class, 'create'])->name('admin.kartu-keluarga.create');
@@ -33,7 +35,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::put('/kartu-keluarga/update/id={id}', [KartuKeluargaController::class, 'update'])->name('admin.kartu-keluarga.update');
     Route::delete('/kartu-keluarga/delete/{id}', [KartuKeluargaController::class, 'destroy'])->name('admin.kartu-keluarga.delete');
     Route::get('/kartu-keluarga/template-excel', [KartuKeluargaController::class, 'downloadTemplate'])->name('admin.kartu-keluarga.template-excel');
-    Route::post('/admin/kartu-keluarga/import-excel', [KartuKeluargaController::class, 'importFile'])->name('admin.kartu-keluarga.import-excel');
+    Route::post('/kartu-keluarga/import-excel', [KartuKeluargaController::class, 'importFile'])->name('admin.kartu-keluarga.import-excel');
 
 
     Route::get('/manajemen-akun', [ManajamenAkunController::class, 'index'])->name('admin.manajemen-akun');

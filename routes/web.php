@@ -31,6 +31,8 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/profile', [ProfileController::class, 'index'])->name('user.profile');
     Route::post('/profile/verify-nik', [ProfileController::class, 'verifyNIK'])->name('user.profile.verify-nik');
+    Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('user.profile.update');
+    Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('user.profile.update-password');
 });
 
 Route::fallback([ErrorController::class, 'handle'])->name('fallback');

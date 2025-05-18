@@ -302,14 +302,18 @@
 
     <!-- Profile Dropdown Button -->
     <div class="relative">
+        @php
+            $user = Auth::user();
+            $userInitial = strtoupper(Str::substr($user->name, 0, 1));
+        @endphp
         <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button" class="nav-link flex items-center gap-2.5 px-3 bg-black/5 border-x border-black/10">
             <div class="relative inline-flex">
                 <div class="w-8 h-8 justify-center items-center flex bg-primary rounded-full">
-                    <span class="text-white">W</span>
+                    <span class="text-white">{{ $userInitial }}</span>
                 </div>
             </div>
             <span class="md:flex flex-col gap-0.5 text-start hidden">
-                <h5 class="text-sm">{{ Auth::user()->name }}</h5>
+                <h5 class="text-sm">{{ $user->name }}</h5>
             </span>
         </button>
 
@@ -321,24 +325,6 @@
             <a href="{{ route('user.profile') }}" class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <i class="ri-account-circle-line text-lg align-middle"></i>
                 <span>My Account</span>
-            </a>
-
-            <!-- item-->
-            <a href="#" class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                <i class="ri-settings-4-line text-lg align-middle"></i>
-                <span>Settings</span>
-            </a>
-
-            <!-- item-->
-            <a href="#" class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                <i class="ri-customer-service-2-line text-lg align-middle"></i>
-                <span>Support</span>
-            </a>
-
-            <!-- item-->
-            <a href="#" class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                <i class="ri-lock-password-line text-lg align-middle"></i>
-                <span>Lock Screen</span>
             </a>
 
             <!-- item-->

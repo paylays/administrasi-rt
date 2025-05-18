@@ -32,6 +32,9 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('/kartu-keluarga/edit/id={id}', [KartuKeluargaController::class, 'edit'])->name('admin.kartu-keluarga.edit');
     Route::put('/kartu-keluarga/update/id={id}', [KartuKeluargaController::class, 'update'])->name('admin.kartu-keluarga.update');
     Route::delete('/kartu-keluarga/delete/{id}', [KartuKeluargaController::class, 'destroy'])->name('admin.kartu-keluarga.delete');
+    Route::get('/kartu-keluarga/template-excel', [KartuKeluargaController::class, 'downloadTemplate'])->name('admin.kartu-keluarga.template-excel');
+    Route::post('/admin/kartu-keluarga/import-excel', [KartuKeluargaController::class, 'importFile'])->name('admin.kartu-keluarga.import-excel');
+
 
     Route::get('/manajemen-akun', [ManajamenAkunController::class, 'index'])->name('admin.manajemen-akun');
     Route::put('/manajemen-akun/update', [ManajamenAkunController::class, 'update'])->name('admin.manajemen-akun.update');

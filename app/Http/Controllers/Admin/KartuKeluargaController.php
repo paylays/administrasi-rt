@@ -7,6 +7,9 @@ use App\Models\Kk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\KartuKeluargaImport;
+
 
 class KartuKeluargaController extends Controller
 {
@@ -73,8 +76,9 @@ class KartuKeluargaController extends Controller
 
     public function update(Request $request, $id)
     {
+        $kk = Kk::findOrFail($id);
+
         try {
-            $kk = Kk::findOrFail($id);
 
             $request->validate([
                 'no_kk' => [
@@ -94,7 +98,6 @@ class KartuKeluargaController extends Controller
                 'kode_pos' => 'required|string|max:10',
             ]);
 
-            $kk = Kk::findOrFail($id);
             $kk->update($request->all());
 
             return redirect()->route('admin.kartu-keluarga')->with('success', 'Data kartu keluarga berhasil diperbarui');
@@ -106,14 +109,42 @@ class KartuKeluargaController extends Controller
 
     public function destroy($id)
     {
+        $kk = Kk::findOrFail($id);
+        
         try {
-            $kk = Kk::findOrFail($id);
             $kk->delete();
 
             return redirect()->route('admin.kartu-keluarga')->with('success', 'Data kartu keluarga berhasil');
         } catch (\Exception $e) {
             Log::error('Gagal hapus data kartu keluarga: ' . $e->getMessage());
             return redirect()->route('admin.kartu-keluarga')->with('error', 'Terjadi kesalahan saat menghapus data.');
+        }
+    }
+
+    public function downloadTemplate()
+    {
+        $file = public_path('templates/template_data_kartu_keluarga.xlsx');
+
+        if (!file_exists($file)) {
+            return redirect()->back()->with('error', 'File template tidak ditemukan.');
+        }
+
+        return response()->download($file, 'template_data_kartu_keluarga.xlsx');
+    }
+
+    public function importFile(Request $request)
+    {
+        $request->validate([
+            'file_excel_kartu_keluarga' => 'required|file|mimes:xlsx,xls'
+        ]);
+
+        try {
+            Excel::import(new KartuKeluargaImport, $request->file('file_excel_kartu_keluarga'));
+
+            return redirect()->route('admin.kartu-keluarga')->with('success', 'Data berhasil diimpor dari Excel.');
+        } catch (\Exception $e) {
+            \Log::error('Gagal import Excel KK: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat mengimpor file.');
         }
     }
 

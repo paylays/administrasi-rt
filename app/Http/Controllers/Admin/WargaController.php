@@ -80,7 +80,10 @@ class WargaController extends Controller
 
     public function update(Request $request, $id)
     {
+        $warga = Warga::findOrFail($id);
+        
         try {
+
             $request->validate([
                 'kk_id' => 'required|exists:kk,id',
                 'nik' => 'required|string|size:16|unique:warga,nik,' . $id,
@@ -99,7 +102,6 @@ class WargaController extends Controller
                 'nama_ibu' => 'required|string|max:255',
             ]);
 
-            $warga = Warga::findOrFail($id);
             $warga->update($request->all());
 
             return redirect()->route('admin.data-warga')->with('success', 'Data warga berhasil diperbarui');
@@ -111,8 +113,9 @@ class WargaController extends Controller
 
     public function destroy($id)
     {
+        $warga = Warga::findOrFail($id);
+        
         try {
-            $warga = Warga::findOrFail($id);
             $warga->delete();
 
             return redirect()->route('admin.data-warga')->with('success', 'Data warga berhasil');

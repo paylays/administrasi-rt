@@ -1,6 +1,7 @@
 @extends('admin.layouts.vertical', ['title' => 'Kartu Keluarga', 'subTitle' => 'Manajemen Data' , 'pageTitle' => 'Kartu Keluarga'])
 
 @section("content")
+
 @if(session('success'))
     <div id="dismiss-example-success" class="border bg-success text-white border-success rounded-md py-3 px-5 flex justify-between items-center mb-3">
         <p>
@@ -23,6 +24,7 @@
         </button>
     </div>
 @endif
+
 <div class="card">
     <div class="p-6">
         <div class="justify-between items-center mb-4">
@@ -31,7 +33,13 @@
         <div class="text-end mb-4">
             <div class="inline-flex space-x-2">
                 <a href="{{ route('admin.kartu-keluarga.create') }}" class="btn bg-primary text-white">Tambah data</a>
-                <button type="button" class="btn bg-success text-white"><i class="ri-file-excel-line me-1.5"></i>Import</button>
+                <a href="javascript:void(0)"
+                    class="open-import-modal btn bg-success text-white"
+                    data-fc-target="user-import-modal"
+                    data-fc-type="modal">
+                    <i class="ri-file-excel-line me-1.5"></i>
+                    Import
+                </a>
             </div>
         </div>
 
@@ -96,6 +104,8 @@
 
 @include('admin.pages.kartu-keluarga.delete')
 
+@include('admin.pages.kartu-keluarga.import')
+
 @endsection
 
 @section('script')
@@ -114,6 +124,10 @@
                 deleteForms.action = `/admin/kartu-keluarga/delete/${this.dataset.id}`;
             });
         });
+
+        // Import Modal
+        const importButtons = document.querySelectorAll('.open-import-modal');
+        const importForms = document.getElementById('import-form');
     });
 
 </script>

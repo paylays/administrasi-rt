@@ -1,7 +1,14 @@
 <div class="app-menu">
 
     <a href="#" class="logo-box">
-        <h1 class="text-lg">Portal Warga SI-RT</h1>
+        <div class="logo-light">
+            <img src="/images/logo.png" class="logo-lg h-[22px]" alt="Light logo">
+            <img src="/images/logo-sm.png" class="logo-sm h-[22px]" alt="Small logo">
+        </div>
+        <div class="logo-dark">
+            <img src="/images/logo-dark.png" class="logo-lg h-[22px]" alt="Dark logo">
+            <img src="/images/logo-sm.png" class="logo-sm h-[22px]" alt="Small logo">
+        </div>
     </a>
 
     <!-- Sidenav Menu Toggle Button -->

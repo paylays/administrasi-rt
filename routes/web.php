@@ -28,6 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
     
     Route::get('/ajukan-surat', [AjukanSuratController::class, 'index'])->name('user.ajukan-surat');
+
+    Route::get('/ajukan-surat/surat-pengantar-rt', [AjukanSuratController::class, 'createPengantarRT'])->name('user.ajukan-surat.surat-pengantar-rt');
+    Route::post('/ajukan-surat/surat-pengantar-rt/store', [AjukanSuratController::class, 'storePengantarRT'])->name('user.ajukan-surat.surat-pengantar-rt.store');
     
     Route::get('/profile', [ProfileController::class, 'index'])->name('user.profile');
     Route::post('/profile/verify-nik', [ProfileController::class, 'verifyNIK'])->name('user.profile.verify-nik');

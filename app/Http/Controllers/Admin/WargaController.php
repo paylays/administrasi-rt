@@ -120,7 +120,7 @@ class WargaController extends Controller
         try {
             $warga->delete();
 
-            return redirect()->route('admin.data-warga')->with('success', 'Data warga berhasil');
+            return redirect()->route('admin.data-warga')->with('success', 'Data warga berhasil dihapus');
         } catch (\Exception $e) {
             Log::error('Gagal hapus data warga: ' . $e->getMessage());
             return redirect()->route('admin.data-warga')->with('error', 'Terjadi kesalahan saat menghapus data.');

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\JenisSuratController;
+use App\Http\Controllers\Admin\PengajuanSuratController;
+use App\Http\Controllers\Admin\PengumumanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\LoginController;
 
@@ -17,6 +20,18 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
+
+    Route::get('/pengajuan-surat', [PengajuanSuratController::class, 'index'])->name('admin.pengajuan-surat');
+    Route::get('/pengajuan-surat/{pengajuan}/verifikasi', [PengajuanSuratController::class, 'lihatVerifikasi'])->name('admin.pengajuan-surat.verifikasi');
+
+    Route::get('/pengajuan-surat/preview/{id}', [PengajuanSuratController::class, 'previewSurat'])->name('admin.pengajuan-surat.preview');
+    Route::post('/pengajuan-surat/{id}/verifikasi', [PengajuanSuratController::class, 'verifikasiSurat'])->name('admin.pengajuan-surat.verifikasi');
+    Route::get('/pengajuan-surat/{id}/preview-selesai', [PengajuanSuratController::class, 'lihatSuratSelesai'])->name('admin.pengajuan-surat.preview-selesai');
+    Route::put('/admin/pengajuan-surat/tolak', [PengajuanSuratController::class, 'tolakSurat'])->name('admin.pengajuan-surat.tolak');
+
+    Route::get('/jenis-surat', [JenisSuratController::class, 'index'])->name('admin.jenis-surat');
+    Route::get('/jenis-surat/preview/{id}', [JenisSuratController::class, 'preview'])->name('admin.jenis-surat.preview');
+    Route::get('/jenis-surat/preview-surat-baru', [JenisSuratController::class, 'previewSuratBaru'])->name('admin.jenis-surat.preview-surat-baru');
 
     Route::get('/data-warga', [WargaController::class, 'index'])->name('admin.data-warga');
     Route::get('/data-warga/create', [WargaController::class, 'create'])->name('admin.data-warga.create');
@@ -37,10 +52,16 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('/kartu-keluarga/template-excel', [KartuKeluargaController::class, 'downloadTemplate'])->name('admin.kartu-keluarga.template-excel');
     Route::post('/kartu-keluarga/import-excel', [KartuKeluargaController::class, 'importFile'])->name('admin.kartu-keluarga.import-excel');
 
-
     Route::get('/manajemen-akun', [ManajamenAkunController::class, 'index'])->name('admin.manajemen-akun');
     Route::put('/manajemen-akun/update', [ManajamenAkunController::class, 'update'])->name('admin.manajemen-akun.update');
     Route::delete('/manajemen-akun/delete', [ManajamenAkunController::class, 'destroy'])->name('admin.manajemen-akun.destroy');
+
+    Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('admin.pengumuman');
+    Route::get('/pengumuman/create', [PengumumanController::class, 'create'])->name('admin.pengumuman.create');
+    Route::post('/pengumuman/store', [PengumumanController::class, 'store'])->name('admin.pengumuman.store');
+    Route::get('/pengumuman/edit/id={id}', [PengumumanController::class, 'edit'])->name('admin.pengumuman.edit');
+    Route::put('/pengumuman/update/id={id}', [PengumumanController::class, 'update'])->name('admin.pengumuman.update');
+    Route::delete('/pengumuman/delete/{id}', [PengumumanController::class, 'destroy'])->name('admin.pengumuman.destroy');
     
     Route::post('logout', [LoginController::class, 'destroy'])->name('admin.logout');
 });

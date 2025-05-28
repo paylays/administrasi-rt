@@ -37,7 +37,7 @@
             <li class="menu-title">Manajemen Surat</li>
             
             <li class="menu-item">
-                <a href="#" class="menu-link">
+                <a href="{{ route('admin.pengajuan-surat') }}" class="menu-link">
                     <span class="menu-icon">
                         <i class="ri-calendar-event-line"></i>
                     </span>
@@ -45,7 +45,7 @@
                 </a>
             </li>
             <li class="menu-item">
-                <a href="#" class="menu-link">
+                <a href="{{ route('admin.jenis-surat') }}" class="menu-link">
                     <span class="menu-icon">
                         <i class="ri-calendar-event-line"></i>
                     </span> 
@@ -80,6 +80,17 @@
                         <i class="ri-account-circle-line"></i>
                     </span>
                     <span class="menu-text"> Manajemen Akun </span>
+                </a>
+            </li>
+            
+            <li class="menu-title">Lainnya</li>
+            
+            <li class="menu-item">
+                <a href="{{ route('admin.pengumuman') }}" class="menu-link">
+                    <span class="menu-icon">
+                        <i class="ri-megaphone-line"></i>
+                    </span>
+                    <span class="menu-text"> Pengumuman </span>
                 </a>
             </li>
         </ul>

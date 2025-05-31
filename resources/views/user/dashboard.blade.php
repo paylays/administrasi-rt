@@ -94,8 +94,6 @@
     </div>
 </div>
 
-@php use Carbon\Carbon; @endphp
-
 <div class="relative space-y-6 pb-6">
     <!-- Center Border Line -->
     <div class="absolute border-s-2 border border-gray-300 h-full top-0 start-10 md:start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -z-10 dark:border-white/10"></div>
@@ -110,7 +108,7 @@
         @php
             $isRight = $loop->iteration % 2 == 0;
             $tanggal = $item->status == 'Sedang Diverifikasi' ? $item->created_at : $item->tanggal_verifikasi;
-            $tanggalFormatted = Carbon::parse($tanggal)->translatedFormat('d F Y H:i');
+            $tanggalFormatted = \Carbon\Carbon::parse($tanggal)->translatedFormat('d F Y H:i');
             $bgColor = match($item->status) {
                 'Selesai' => 'bg-success/30 text-success',
                 'Ditolak' => 'bg-danger/30 text-danger',
@@ -129,8 +127,8 @@
                     <div class="relative {{ $isRight ? 'md:ms-10 ms-20' : 'md:me-10 md:ms-0 ms-20' }}">
                         <div class="card p-5">
                             <h4 class="mb-1.5 text-base">Pengajuan Surat: {{ $item->jenisSurat->nama }}</h4>
-                            <p class="mb-4 text-gray-500 dark:text-gray-200"><small>{{ $tanggalFormatted }}</small></p>
-                            <p class="mb-4 text-gray-500 dark:text-gray-200">Status: 
+                            <p class="mb-4 text-base text-gray-500 dark:text-gray-200"><small>{{ $tanggalFormatted }}</small></p>
+                            <p class="mb-4 text-base text-gray-500 dark:text-gray-200">Status: 
                                 <strong>
                                     <span class="inline-block px-2 py-1 rounded-full text-xs font-semibold {{ $bgColor ?? 'bg-gray-100 text-gray-800' }}">
                                         {{ $item->status }}

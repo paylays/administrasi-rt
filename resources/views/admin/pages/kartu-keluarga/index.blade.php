@@ -67,8 +67,8 @@
                                 <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->nama_kepala_keluarga }}</td>
                                 <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->alamat }}</td>
                                 <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->rt }}/{{ $item->rw ?? '-' }}</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->created_at->format('d-m-Y') }}</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->updated_at->format('d-m-Y') }}</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->created_at->translatedFormat('d F Y H:i') }}</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->updated_at->translatedFormat('d F Y H:i') }}</td>
                                 <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200 text-center">
                                     <a href="{{ route('admin.kartu-keluarga.detail', $item->id) }}"><i class="ri-file-info-fill text-xl text-info"></i></a>
                                     <a href="{{ route('admin.kartu-keluarga.edit', $item->id) }}"><i class="ri-edit-box-fill text-xl text-warning"></i></a>

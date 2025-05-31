@@ -187,17 +187,13 @@
             <div class="card overflow-hidden">
 
                 <!-- Logo -->
-                <div class="p-9 bg-primary">
-                    <a href="#" class="flex justify-center">
-                        <img src="/images/logo.png" alt="logo" class="h-6 block dark:hidden">
-                        <img src="/images/logo-dark.png" alt="logo" class="h-6 hidden dark:block">
-                    </a>
+                <div class="p-7 bg-primary">
                 </div>
 
                 <div class="p-9">
                     <div class="text-center mx-auto w-3/4">
-                        <h4 class="text-dark/70 text-center text-lg font-bold dark:text-light/80 mb-2">Sign In</h4>
-                        <p class="text-gray-400 mb-9">Enter your email address and password to access admin panel.</p>
+                        <h4 class="text-dark/70 text-center text-lg font-bold dark:text-light/80 mb-2">Login Dashboard</h4>
+                        <p class="text-gray-400 mb-9">Masukkan email dan kata sandi untuk mengakses admin panel.</p>
                     </div>
 
                     @if (session('error'))
@@ -211,31 +207,22 @@
                         @csrf
 
                         <div class="mb-6 space-y-2">
-                            <label for="email" class="font-semibold text-gray-500">Email address</label>
-                            <input class="form-input" type="email" id="email" name="email" value="adminrt@example.com" placeholder="Enter your email">
+                            <label for="email" class="font-semibold text-gray-500">Email</label>
+                            <input class="form-input" type="email" id="email" name="email" value="adminrt@example.com" placeholder="Masukkan email">
                         </div>
 
                         <div class="mb-6 space-y-2">
                             <div class="flex justify-between items-center mb-2">
-                                <label for="password" class="font-semibold text-gray-500">Password</label>
+                                <label for="password" class="font-semibold text-gray-500">Kata Sandi</label>
                             </div>
 
                             <div class="flex items-center">
                                 <input type="password" id="password" name="password" value="admin123"
-                                       class="form-input rounded-e-none" placeholder="Enter your password">
-                                <span class="px-3 py-1 border rounded-e-md -ms-px dark:border-white/10"><i
+                                       class="form-input rounded-e-none" placeholder="Masukkan kata sandi">
+                                <span id="togglePassword" class="px-3 py-1 border rounded-e-md -ms-px dark:border-white/10"><i
                                         class="ri-eye-line text-lg"></i></span>
                             </div>
                         </div>
-
-                        <div class="mb-6">
-                            <div class="flex items-center">
-                                <input type="checkbox" class="form-checkbox rounded text-primary" id="checkbox-signin"
-                                       checked>
-                                <label class="ms-2" for="checkbox-signin">Remember me</label>
-                            </div>
-                        </div>
-
                         <div class="text-center mb-6">
                             <button class="btn bg-primary text-white" type="submit"> Log In</button>
                         </div>
@@ -256,6 +243,20 @@
 </footer>
 
 @include('admin.layouts.shared/footer-scripts')
+
+<script>
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+
+    togglePassword.addEventListener('click', function () {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+
+        // Toggle icon class (misal pakai remixicon)
+        this.querySelector('i').classList.toggle('ri-eye-line');
+        this.querySelector('i').classList.toggle('ri-eye-off-line');
+    });
+</script>
 
 </body>
 

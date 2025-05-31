@@ -52,30 +52,30 @@
                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                         <thead>
                             <tr>
-                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">No</th>
-                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">No.KK</th>
-                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">NIK</th>
-                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Nama Lengkap</th>
-                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Jenis Kelamin</th>
-                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Status Hubungan dalam Keluarga</th>
-                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Tanggal Dibuat</th>
-                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Tanggal Diubah</th>
-                                <th scope="col" class="px-4 py-4 text-center text-sm font-medium text-gray-500">Action</th>
+                                <th scope="col" class="px-2 py-2 text-start text-sm font-medium text-gray-500">No</th>
+                                <th scope="col" class="px-2 py-2 text-start text-sm font-medium text-gray-500">No.KK</th>
+                                <th scope="col" class="px-2 py-2 text-start text-sm font-medium text-gray-500">NIK</th>
+                                <th scope="col" class="px-2 py-2 text-start text-sm font-medium text-gray-500">Nama Lengkap</th>
+                                <th scope="col" class="px-2 py-2 text-start text-sm font-medium text-gray-500">Jenis Kelamin</th>
+                                <th scope="col" class="px-2 py-2 text-start text-sm font-medium text-gray-500">Status Hubungan dalam Keluarga</th>
+                                <th scope="col" class="px-2 py-2 text-start text-sm font-medium text-gray-500">Tanggal Dibuat</th>
+                                <th scope="col" class="px-2 py-2 text-start text-sm font-medium text-gray-500">Tanggal Diubah</th>
+                                <th scope="col" class="px-2 py-2 text-center text-sm font-medium text-gray-500">Action</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700 uppercase">
                             @forelse($warga as $index => $item)
                             <tr>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $index + 1 }}</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->kk->no_kk ?? '-' }} 
+                                <td class="px-2 py-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $index + 1 }}</td>
+                                <td class="px-2 py-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->kk->no_kk ?? '-' }} 
                                     <a href="{{ route('admin.kartu-keluarga.detail', $item->kk->id) }}" class="text-primary normal-case">
                                         <small><i>Lihat kk</i></small>
                                     </a>
                                 </td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->nik }}</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->nama_lengkap }}</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->jenis_kelamin }}</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm">
+                                <td class="px-2 py-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->nik }}</td>
+                                <td class="px-2 py-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->nama_lengkap }}</td>
+                                <td class="px-2 py-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->jenis_kelamin }}</td>
+                                <td class="px-2 py-2 whitespace-nowrap text-sm">
                                     @switch($item->status_hubungan_dalam_keluarga)
                                         @case('Kepala Keluarga')
                                             <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded-md text-xs font-medium bg-success text-white">Kepala Keluarga</span>
@@ -93,9 +93,9 @@
                                             <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded-md text-xs font-medium bg-dark text-white">{{ $item->status_hubungan_dalam_keluarga }}</span>
                                     @endswitch
                                 </td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->created_at->format('d-m-Y') }}</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->updated_at->format('d-m-Y') }}</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200 text-center">
+                                <td class="px-2 py-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->created_at->translatedFormat('d F Y H:i') }}</td>
+                                <td class="px-2 py-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->updated_at->translatedFormat('d F Y H:i') }}</td>
+                                <td class="px-2 py-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200 text-center">
                                     <a href="javascript:void(0)" 
                                         class="open-detail-modal" 
                                         data-fc-target="user-detail-modal" 
@@ -132,7 +132,7 @@
                             </tr>
                             @empty
                                 <tr>
-                                    <td colspan="8" class="px-4 py-4 text-center text-sm text-gray-500 dark:text-gray-300">
+                                    <td colspan="8" class="px-2 py-2 text-center text-sm text-gray-500 dark:text-gray-300">
                                         Tidak ada data warga.
                                     </td>
                                 </tr>

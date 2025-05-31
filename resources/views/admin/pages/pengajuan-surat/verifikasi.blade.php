@@ -16,6 +16,48 @@
 
 <div class="grid xl:grid-cols-1 grid-cols-1 space-y-6">
 
+    {{-- Informasi Akun Warga --}}
+    <div class="card">
+        <div class="p-6">
+            <h5 class="mb-6 uppercase text-base bg-light p-2 dark:bg-gray-700">
+                <i class="ri-user-line me-1.5"></i> Informasi Akun Warga
+            </h5>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-sm text-gray-600 font-semibold">Nama Lengkap</label>
+                        <div class="text-gray-800 dark:text-gray-200">
+                            {{ $pengajuan->user->name ?? '-' }}
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-600 font-semibold">NIK</label>
+                        <div class="text-gray-800 dark:text-gray-200">
+                            {{ $pengajuan->user->nik ?? '-' }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-sm text-gray-600 font-semibold">Nomor HP</label>
+                        <div class="text-gray-800 dark:text-gray-200">
+                            {{ $pengajuan->user->no_hp ?? '-' }}
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-600 font-semibold">Alamat Email</label>
+                        <div class="text-gray-800 dark:text-gray-200">
+                            {{ $pengajuan->user->email ?? '-' }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Informasi Pemohon Pengajuan Surat --}}
     <div class="card">
         <div class="p-6">
             <h5 class="mb-6 uppercase text-base bg-light p-2 dark:bg-gray-700">
@@ -36,8 +78,17 @@
                 </div>
             </div>
 
+            {{-- Tanggal Pengajuan --}}
+            <div class="mb-6">
+                <label class="block font-semibold text-sm text-gray-600 mb-1">Tanggal Pengajuan</label>
+                <div class="text-base font-bold text-danger">
+                    {{ \Carbon\Carbon::parse($pengajuan->created_at)->translatedFormat('l, d F Y H:i') }}
+                </div>
+            </div>
+
             @php
                 $dataPengajuan = collect($pengajuan->data_pengajuan);
+                $nik_pemohon = $dataPengajuan->pull('nik_pemohon');
                 $half = ceil($dataPengajuan->count() / 2);
                 $left = $dataPengajuan->slice(0, $half);
                 $right = $dataPengajuan->slice($half);
@@ -47,6 +98,12 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {{-- Kolom Kiri --}}
                 <div class="space-y-3 mt-3">
+                    @if ($nik_pemohon)
+                        <div>
+                            <label class="block text-sm text-gray-600 font-semibold capitalize">NIK Pemohon</label>
+                            <div class="text-gray-800 dark:text-gray-200">{{ $nik_pemohon ?? '-' }}</div>
+                        </div>
+                    @endif
                     @foreach ($left as $key => $value)
                         <div>
                             <label class="block text-sm text-gray-600 font-semibold capitalize">{{ str_replace('_', ' ', $key) }}</label>

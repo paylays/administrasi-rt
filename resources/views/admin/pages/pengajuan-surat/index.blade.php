@@ -97,14 +97,39 @@
                                         </div>
                                     @endif
                                 </td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->created_at->format('d M Y H:i') }}</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->created_at->translatedFormat('d F Y H:i') }}</td>
                                 <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200 text-center">
-                                    <a href="#"><i class="ri-file-info-fill text-xl text-info"></i></a>
-                                    <a href="#"><i class="ri-edit-box-fill text-xl text-warning"></i></a>
+                                    <a href="javascript:void(0)" 
+                                        class="open-detail-modal" 
+                                        data-fc-target="user-detail-modal" 
+                                        data-fc-type="modal"
+                                        data-pengajuan_id="{{ $item->pengajuan_id }}"
+                                        data-nik_pemohon="{{ $item->data_pengajuan['nik_pemohon'] ?? '-' }}"
+                                        data-nama_pemohon="{{ $item->data_pengajuan['nama'] ?? '-' }}"
+                                        data-nik="{{ $item->user->nik ?? 'Belum verifikasi NIK' }}"
+                                        data-name="{{ $item->user->name }}"
+                                        data-email="{{ $item->user->email }}"
+                                        data-jenis="{{ $item->jenisSurat->nama_surat }}"
+                                        data-status="{{ $item->status }}"
+                                        data-nomorsurat="{{ $item->nomor_surat ?? '-' }}"
+                                        data-verifikasi="{{ $item->tanggal_verifikasi ? \Carbon\Carbon::parse($item->tanggal_verifikasi)->translatedFormat('d F Y H:i') : '-' }}"
+                                        data-catatan="{{ $item->catatan_admin ?? '-' }}"
+                                        data-ttd="{{ $item->file_ttd ?? '-' }}"
+                                        data-surat="{{ $item->file_surat ?? '-' }}"
+                                        data-created="{{ $item->created_at->translatedFormat('d F Y H:i') }}">
+                                        <i class="ri-file-info-fill text-xl text-info"></i>
+                                    </a>
                                     <a href="javascript:void(0)"
                                         class="open-delete-modal"
                                         data-fc-target="user-delete-modal"
-                                        data-fc-type="modal">
+                                        data-fc-type="modal"
+                                        data-id="{{ $item->id }}"
+                                        data-pengajuan_id="{{ $item->pengajuan_id }}"
+                                        data-nik="{{ $item->user->nik ?? 'Belum verifikasi NIK' }}"
+                                        data-email="{{ $item->user->email ?? '-' }}"
+                                        data-name="{{ $item->user->name ?? '-' }}"
+                                        data-nik_pemohon="{{ $item->data_pengajuan['nik_pemohon'] ?? '-' }}"
+                                        data-nama_pemohon="{{ $item->data_pengajuan['nama'] ?? '-' }}">
                                         <i class="ri-delete-bin-2-fill text-xl text-danger"></i>
                                     </a>
                                 </td>
@@ -129,5 +154,55 @@
 
     </div>
 </div>
+
+@include('admin.pages.pengajuan-surat.detail')
+
+@include('admin.pages.pengajuan-surat.delete')
+
+@endsection
+
+@section('script')
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Detail Modal
+        const detailButtons = document.querySelectorAll('.open-detail-modal');
+        detailButtons.forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.getElementById('detail-pengajuan_id').textContent = this.dataset.pengajuan_id;
+                document.getElementById('detail-nik_pemohon').textContent = this.dataset.nik_pemohon;
+                document.getElementById('detail-nama_pemohon').textContent = this.dataset.nama_pemohon;
+                document.getElementById('detail-nik').textContent = this.dataset.nik;
+                document.getElementById('detail-name').textContent = this.dataset.name;
+                document.getElementById('detail-email').textContent = this.dataset.email;
+                document.getElementById('detail-jenis').textContent = this.dataset.jenis;
+                document.getElementById('detail-status').textContent = this.dataset.status;
+                document.getElementById('detail-nomorsurat').textContent = this.dataset.nomorsurat;
+                document.getElementById('detail-verifikasi').textContent = this.dataset.verifikasi;
+                document.getElementById('detail-catatan').textContent = this.dataset.catatan;
+                document.getElementById('detail-ttd').textContent = this.dataset.ttd;
+                document.getElementById('detail-surat').textContent = this.dataset.surat;
+                document.getElementById('detail-created').textContent = this.dataset.created;
+            });
+        });
+
+        // Delete Modal
+        const deleteButtons = document.querySelectorAll('.open-delete-modal');
+        const deleteForms = document.getElementById('delete-form');
+        deleteButtons.forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.getElementById('delete-id').value = this.dataset.id;
+                document.getElementById('delete-pengajuan_id').textContent = this.dataset.pengajuan_id;
+                document.getElementById('delete-nik').textContent = this.dataset.nik;
+                document.getElementById('delete-email').textContent = this.dataset.email;
+                document.getElementById('delete-name').textContent = this.dataset.name;
+                document.getElementById('delete-nik_pemohon').textContent = this.dataset.nik_pemohon;
+                document.getElementById('delete-nama_pemohon').textContent = this.dataset.nama_pemohon;
+                deleteForms.action = `/admin/pengajuan-surat/delete/${this.dataset.id}`;
+            });
+        });
+    });
+
+</script>
 
 @endsection

@@ -1,20 +1,6 @@
 <!-- Topbar Start -->
 <header class="app-header flex items-center px-4 gap-3.5">
 
-    <a href="#" class="logo-box">
-        <!-- Light Logo -->
-        <div class="logo-light">
-            <img src="/images/logo.png" class="logo-lg h-[22px]" alt="Light logo">
-            <img src="/images/logo-sm.png" class="logo-sm h-[22px]" alt="Small logo">
-        </div>
-
-        <!-- Dark Logo -->
-        <div class="logo-dark">
-            <img src="/images/logo-dark.png" class="logo-lg h-[22px]" alt="Dark logo">
-            <img src="/images/logo-sm.png" class="logo-sm h-[22px]" alt="Small logo">
-        </div>
-    </a>
-
     <!-- Sidenav Menu Toggle Button -->
     <button id="button-toggle-menu" class="nav-link p-2">
         <span class="sr-only">Menu Toggle Button</span>
@@ -22,60 +8,6 @@
             <i class="ri-menu-2-fill text-2xl"></i>
         </span>
     </button>
-
-    <!-- Topbar Search Input -->
-    <div class="relative hidden lg:block">
-
-        <form data-fc-type="dropdown" type="button">
-            <input type="search" class="form-input bg-black/5 border-none ps-8 relative" placeholder="Search...">
-            <span class="ri-search-line text-base z-10 absolute start-2 top-1/2 -translate-y-1/2"></span>
-        </form>
-
-        <div class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-80 z-50 mt-3.5 transition-all duration-300 bg-white shadow-lg border rounded-lg py-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
-
-            <!-- item-->
-            <h5 class="flex items-center py-2 px-3 text-sm text-gray-800 dark:text-gray-400 uppercase">Found <b class="text-decoration-underline">08</b> results</h5>
-
-            <!-- item-->
-            <a href="javascript:void(0);" class="flex items-center py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                <i class="ri-file-chart-line text-base me-1"></i>
-                <span>Analytics Report</span>
-            </a>
-
-            <!-- item-->
-            <a href="javascript:void(0);" class="flex items-center py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                <i class="ri-lifebuoy-line text-base me-1"></i>
-                <span>How can I help you?</span>
-            </a>
-
-            <!-- item-->
-            <a href="javascript:void(0);" class="flex items-center py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                <i class="ri-user-settings-line text-base me-1"></i>
-                <span>User profile settings</span>
-            </a>
-
-            <!-- item-->
-            <h6 class="flex items-center py-2 px-3 text-sm text-gray-800 dark:text-gray-400 uppercase">Users</h6>
-
-            <!-- item-->
-            <a href="javascript:void(0);" class="flex items-center py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                <img class="me-2 rounded-full h-8" src="/images/users/avatar-2.jpg" alt="Generic placeholder image">
-                <div class="flex-grow">
-                    <h5 class="m-0 fs-14">Erwin Brown</h5>
-                    <span class="fs-12 ">UI Designer</span>
-                </div>
-            </a>
-
-            <!-- item-->
-            <a href="javascript:void(0);" class="flex items-center py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                <img class="me-2 rounded-full h-8" src="/images/users/avatar-5.jpg" alt="Generic placeholder image">
-                <div class="flex-grow">
-                    <h5 class="m-0 fs-14">Jacob Deo</h5>
-                    <span class="fs-12 ">Developer</span>
-                </div>
-            </a>
-        </div>
-    </div>
 
     <!-- Theme Setting Button -->
     <div class="relative ms-auto">
@@ -113,10 +45,11 @@
         @php
             $user = Auth::user();
             $userInitial = strtoupper(Str::substr($user->name, 0, 1));
+            $bgColor = session('userAvatarBg', 'bg-primary');
         @endphp
         <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button" class="nav-link flex items-center gap-2.5 px-3 bg-black/5 border-x border-black/10">
             <div class="relative inline-flex">
-                <div class="w-8 h-8 justify-center items-center flex bg-primary rounded-full">
+                <div class="w-8 h-8 justify-center items-center flex {{ $bgColor }} rounded-full">
                     <span class="text-white">{{ $userInitial }}</span>
                 </div>
             </div>
@@ -132,7 +65,7 @@
             <!-- item-->
             <a href="{{ route('user.profile') }}" class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <i class="ri-account-circle-line text-lg align-middle"></i>
-                <span>My Account</span>
+                <span>Akun saya</span>
             </a>
 
             <!-- item-->

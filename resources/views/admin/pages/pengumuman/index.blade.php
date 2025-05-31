@@ -44,31 +44,37 @@
                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                         <thead>
                             <tr>
-                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">No</th>
-                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Judul</th>
-                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Isi</th>
-                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Cover</th>
-                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Status</th>
-                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Dibuat Oleh</th>
-                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Tanggal Publish</th>
-                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Tanggal Kadaluwarsa</th>
-                                <th scope="col" class="px-4 py-4 text-center text-sm font-medium text-gray-500">Action</th>
+                                <th scope="col" class="px-2 py-2 text-start text-sm font-medium text-gray-500">No</th>
+                                <th scope="col" class="px-2 py-2 text-start text-sm font-medium text-gray-500">Judul</th>
+                                <th scope="col" class="px-2 py-2 text-start text-sm font-medium text-gray-500">Isi</th>
+                                <th scope="col" class="px-2 py-2 text-start text-sm font-medium text-gray-500">Cover</th>
+                                <th scope="col" class="px-2 py-2 text-start text-sm font-medium text-gray-500">Status</th>
+                                <th scope="col" class="px-2 py-2 text-start text-sm font-medium text-gray-500">Dibuat Oleh</th>
+                                <th scope="col" class="px-2 py-2 text-start text-sm font-medium text-gray-500">Tanggal Publish</th>
+                                <th scope="col" class="px-2 py-2 text-start text-sm font-medium text-gray-500">Tanggal Kadaluwarsa</th>
+                                <th scope="col" class="px-2 py-2 text-center text-sm font-medium text-gray-500">Action</th>
                             </tr>
                         </thead>
+
+                        @php use Illuminate\Support\Str; @endphp
                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                             @forelse($pengumumans as $index => $item)
                                 <tr>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $index + 1 }}</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->judul }}</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->isi }}</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
+                                    <td class="px-2 py-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $index + 1 }}</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
+                                        {{ Str::words($item->judul, 4, '...') }}
+                                    </td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
+                                        {{ Str::words(strip_tags($item->isi), 4, '...') }}
+                                    </td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
                                         @if($item->cover)
                                             <img src="{{ asset('storage/' . $item->cover) }}" alt="Cover" class="w-24 h-auto rounded max-w-25px max-h-25px object-cover shadow">
                                         @else
                                             <span class="text-gray-400 italic">Tidak ada cover</span>
                                         @endif
                                     </td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
+                                    <td class="px-2 py-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
                                         @switch($item->status)
                                             @case('draft')
                                                 <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded-md text-xs font-medium bg-warning text-white">DRAFT</span>
@@ -86,10 +92,10 @@
                                                 <span class="inline-flex items-center gap-1.5 py-0.5 px-1.5 rounded-md text-xs font-medium bg-dark text-white">{{ $item->status }}</span>
                                         @endswitch
                                     </td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->admin->name ?? '-' }}</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->tanggal_publish ? $item->tanggal_publish->format('d-m-Y') : '-' }}</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->tanggal_kadaluwarsa ? $item->tanggal_kadaluwarsa->format('d-m-Y') : '-' }}</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200 text-center">
+                                    <td class="px-2 py-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->admin->name ?? '-' }}</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->tanggal_publish ? $item->tanggal_publish->translatedFormat('d F Y H:i') : '-' }}</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->tanggal_kadaluwarsa ? $item->tanggal_kadaluwarsa->translatedFormat('d F Y H:i') : '-' }}</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200 text-center">
                                         <a href="javascript:void(0)" 
                                             class="open-detail-modal" 
                                             data-fc-target="user-detail-modal" 
@@ -116,7 +122,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="8" class="px-4 py-4 text-center text-sm text-gray-500 dark:text-gray-300">
+                                    <td colspan="8" class="px-2 py-2 text-center text-sm text-gray-500 dark:text-gray-300">
                                         Tidak ada data pengumuman.
                                     </td>
                                 </tr>

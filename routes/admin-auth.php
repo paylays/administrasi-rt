@@ -1,15 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\ManajamenAkunController;
+use App\Http\Controllers\Admin\WargaController;
+use App\Http\Controllers\Admin\KartuKeluargaController;
 use App\Http\Controllers\Admin\JenisSuratController;
 use App\Http\Controllers\Admin\PengajuanSuratController;
 use App\Http\Controllers\Admin\PengumumanController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\Auth\LoginController;
-
-use App\Http\Controllers\Admin\WargaController;
-use App\Http\Controllers\Admin\KartuKeluargaController;
-
-use App\Http\Controllers\Admin\ManajamenAkunController;
 
 Route::prefix('admin')->middleware('guest:admin')->group(function () {
     Route::get('login', [LoginController::class, 'create'])->name('admin.login');
@@ -28,6 +26,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::post('/pengajuan-surat/{id}/verifikasi', [PengajuanSuratController::class, 'verifikasiSurat'])->name('admin.pengajuan-surat.verifikasi');
     Route::get('/pengajuan-surat/{id}/preview-selesai', [PengajuanSuratController::class, 'lihatSuratSelesai'])->name('admin.pengajuan-surat.preview-selesai');
     Route::put('/admin/pengajuan-surat/tolak', [PengajuanSuratController::class, 'tolakSurat'])->name('admin.pengajuan-surat.tolak');
+    Route::delete('/pengajuan-surat/delete/{id}', [PengajuanSuratController::class, 'destroy'])->name('admin.pengajuan-surat.delete');
 
     Route::get('/jenis-surat', [JenisSuratController::class, 'index'])->name('admin.jenis-surat');
     Route::get('/jenis-surat/preview/{id}', [JenisSuratController::class, 'preview'])->name('admin.jenis-surat.preview');
@@ -62,7 +61,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('/pengumuman/edit/id={id}', [PengumumanController::class, 'edit'])->name('admin.pengumuman.edit');
     Route::put('/pengumuman/update/id={id}', [PengumumanController::class, 'update'])->name('admin.pengumuman.update');
     Route::delete('/pengumuman/delete/{id}', [PengumumanController::class, 'destroy'])->name('admin.pengumuman.destroy');
-    
+
     Route::post('logout', [LoginController::class, 'destroy'])->name('admin.logout');
 });
 

@@ -57,8 +57,8 @@
                                         <td class="px-4 py-4 whitespace-nowrap {{ is_null($item->nik) ? 'text-danger' : 'text-gray-700 dark:text-gray-200' }}">{{ $item->nik ?? 'Belum verifikasi NIK' }}</td>
                                         <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->name }}</td>
                                         <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->email }}</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->created_at->format('d-m-Y') }}</td>
-                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->updated_at->format('d-m-Y') }}</td>
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->created_at->translatedFormat('d F Y H:i') }}</td>
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->updated_at->translatedFormat('d F Y H:i') }}</td>
                                         <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200 text-center">
                                             <a href="javascript:void(0)" 
                                                 class="open-detail-modal" 
@@ -141,7 +141,7 @@
                         <label for="password" class="font-semibold text-gray-500">Kata Sandi</label>
                         <div class="flex items-center">
                             <input type="password" id="password" name="password" class="form-input rounded-e-none" placeholder="******">
-                            <span class="px-3.5 py-1 bg-light/30 dark:bg-slate-700/60 border rounded-e -ms-px dark:border-white/10"><i class="ri-eye-line text-lg"></i></span>
+                            <span id="togglePassword" class="px-3.5 py-1 bg-light/30 dark:bg-slate-700/60 border rounded-e -ms-px dark:border-white/10"><i class="ri-eye-line text-lg"></i></span>
                         </div>
                     </div>
     
@@ -149,7 +149,7 @@
                         <label for="password_confirmation" class="font-semibold text-gray-500">Konfirmasi Kata Sandi</label>
                         <div class="flex items-center">
                             <input type="password" id="password_confirmation" name="password_confirmation" class="form-input rounded-e-none" placeholder="******">
-                            <span class="px-3.5 py-1 bg-light/30 dark:bg-slate-700/60 border rounded-e -ms-px dark:border-white/10"><i class="ri-eye-line text-lg"></i></span>
+                            <span id="togglePassword" class="px-3.5 py-1 bg-light/30 dark:bg-slate-700/60 border rounded-e -ms-px dark:border-white/10"><i class="ri-eye-line text-lg"></i></span>
                         </div>
                     </div>
     
@@ -201,6 +201,18 @@
                 document.getElementById('delete-email').textContent = this.dataset.email;
             });
         });
+    });
+
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+
+    togglePassword.addEventListener('click', function () {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+
+        // Toggle icon class (misal pakai remixicon)
+        this.querySelector('i').classList.toggle('ri-eye-line');
+        this.querySelector('i').classList.toggle('ri-eye-off-line');
     });
 
 </script>

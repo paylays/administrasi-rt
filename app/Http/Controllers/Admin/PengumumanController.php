@@ -82,6 +82,14 @@ class PengumumanController extends Controller
                 $validated['cover'] = $coverFile->storeAs('covers', $filename, 'public');
             }
 
+            if ($validated['status'] === 'published' && !$pengumuman->tanggal_publish) {
+                $validated['tanggal_publish'] = now();
+            }
+
+            if ($validated['status'] === 'archived' && !$pengumuman->tanggal_kadaluwarsa) {
+                $validated['tanggal_kadaluwarsa'] = now()->addDays(180);
+            }
+
             $pengumuman->update($validated);
 
             return redirect()->route('admin.pengumuman')->with('success', 'Pengumuman berhasil diperbarui.');

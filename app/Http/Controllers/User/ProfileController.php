@@ -15,13 +15,6 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
-        
-        // $name = Auth::user()->name;
-        // $initial = strtoupper(Str::substr($name, 0, 1));
-        // $colors = ['bg-primary', 'bg-secondary', 'bg-info', 'bg-success', 'bg-warning', 'bg-danger'];
-        // $colorIndex = ord($initial) % count($colors);
-        // $bgColor = $colors[$colorIndex];
-
         return view('user.pages.profile.index', compact('user'));
     }
 
@@ -104,6 +97,21 @@ class ProfileController extends Controller
         } catch (\Exception $e) {
             Log::error('Gagal update password: ' . $e->getMessage());
             return redirect()->back()->withInput()->withErrors(['Terjadi kesalahan saat mengubah kata sandi. Silakan coba lagi.']);
+        }
+    }
+
+    public function destroy()
+    {
+        try {
+            $user = Auth::user();
+
+            Auth::logout();
+            $user->delete();
+
+            return redirect('/login')->with('success', 'Akun Anda berhasil dihapus.');
+        } catch (\Exception $e) {
+            Log::error('Gagal menghapus akun: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat menghapus akun.');
         }
     }
 }

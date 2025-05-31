@@ -1,14 +1,9 @@
 <div class="app-menu">
 
-    <a href="#" class="logo-box">
-        <div class="logo-light">
-            <img src="/images/logo.png" class="logo-lg h-[22px]" alt="Light logo">
-            <img src="/images/logo-sm.png" class="logo-sm h-[22px]" alt="Small logo">
-        </div>
-        <div class="logo-dark">
-            <img src="/images/logo-dark.png" class="logo-lg h-[22px]" alt="Dark logo">
-            <img src="/images/logo-sm.png" class="logo-sm h-[22px]" alt="Small logo">
-        </div>
+    <a href="{{ route('user.dashboard') }}" class="logo-box">
+        <h1>
+            Dashboard Warga RT.36
+        </h1>
     </a>
 
     <!-- Sidenav Menu Toggle Button -->
@@ -41,27 +36,11 @@
                     <span class="menu-text"> Ajukan Surat </span>
                 </a>
             </li>
-            <li class="menu-item">
-                <a href="#" class="menu-link">
-                    <span class="menu-icon">
-                        <i class="ri-file-list-3-line"></i>
-                    </span>
-                    <span class="menu-text"> Jenis Surat </span>
-                </a>
-            </li>
 
             <li class="menu-title">Lainnya</li>
 
             <li class="menu-item">
-                <a href="#" class="menu-link">
-                    <span class="menu-icon">
-                        <i class="ri-megaphone-line"></i>
-                    </span>
-                    <span class="menu-text"> Pengumuman </span>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="#" class="menu-link">
+                <a href="{{ route('user.faqs-bantuan') }}" class="menu-link">
                     <span class="menu-icon">
                         <i class="ri-question-line"></i>
                     </span>

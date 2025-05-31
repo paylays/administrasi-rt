@@ -54,8 +54,8 @@
                                 <td class="px-4 py-4 whitespace-nowrap text-sm text-primary underline">
                                     <a href="{{ route('admin.jenis-surat.preview', ['id' => $item->id]) }}" target="_blank">Lihat Surat</a>
                                 </td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->created_at->format('d-m-Y') }}</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->updated_at->format('d-m-Y') }}</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->created_at->translatedFormat('d F Y H:i') }}</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->updated_at->translatedFormat('d F Y H:i') }}</td>
                             </tr>
                             @empty
                             <tr>

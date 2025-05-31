@@ -185,16 +185,16 @@
                 <div class="card overflow-hidden">
 
                     <!-- Logo -->
-                    <div class="p-9 bg-primary">
-                        <a href="#" class="flex justify-center">
-                            <img src="/images/logo.png" alt="logo" class="h-6">
-                        </a>
+                    <div class="p-7 bg-primary">
                     </div>
 
                     <div class="p-9">
                         <div class="text-center mx-auto w-3/4">
-                            <h4 class="text-dark/70 text-center text-lg font-bold dark:text-light/80 mb-2">See You Again !</h4>
-                            <p class="text-gray-400 mb-9">You are now successfully sign out.</p>
+                            <h4 class="text-dark/70 text-center text-lg font-bold dark:text-light/80 mb-2">Sampai Jumpa Lagi !</h4>
+                            <p class="text-gray-400 mb-9">        
+                                Anda telah berhasil keluar dari sistem administrasi RT. Terima kasih telah menggunakan layanan kami.  
+                                Jangan ragu untuk kembali kapan saja untuk mengakses informasi dan layanan RT dengan mudah dan cepat.
+                            </p>
                         </div>
 
                         <div class="w-36 mx-auto">
@@ -214,7 +214,7 @@
                 <!-- end card -->
 
                 <div class="text-center my-4">
-                    <p class="text-muted">Already have account? <a href="{{ route('login')}}" class="text-muted ms-1 link-offset-3 underline underline-offset-4"><b>Log In</b></a></p>
+                    <p class="text-muted">Sudah punya akun? <a href="{{ route('login')}}" class="text-muted ms-1 link-offset-3 underline underline-offset-4"><b>Log In</b></a></p>
                 </div>
             </div>
         </div>
@@ -222,9 +222,7 @@
 
     <footer class="absolute bottom-0 inset-x-0">
         <p class="font-medium text-center p-6">
-            <script>
-                document.write(new Date().getFullYear())
-            </script> © Attex - Coderthemes.com
+            <script>document.write(new Date().getFullYear())</script> © Kelompok D2 - <a href="#" target="_blank">Kuliah Kerja Nyata</a>
         </p>
     </footer>
 

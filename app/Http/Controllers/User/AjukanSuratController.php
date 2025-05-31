@@ -30,6 +30,7 @@ class AjukanSuratController extends Controller
     {
         try {
             $data = $request->validate([
+                'nik_pemohon' => 'required|string|size:16',
                 'nama' => 'required|string',
                 'jenis_kelamin' => 'required|string',
                 'tempat_lahir' => 'required|string',
@@ -45,6 +46,7 @@ class AjukanSuratController extends Controller
             ]);
 
             $dataPengajuan = [
+                'nik_pemohon' => $data['nik_pemohon'],
                 'nama' => $data['nama'],
                 'jenis_kelamin' => $data['jenis_kelamin'],
                 'tempat_lahir' => $data['tempat_lahir'],

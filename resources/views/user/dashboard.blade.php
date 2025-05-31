@@ -17,317 +17,137 @@
     </div>
 @endif
 
-<div class="grid 2xl:grid-cols-5 lg:grid-cols-6 md:grid-cols-2 gap-6 mb-6">
-    <div class="2xl:col-span-1 lg:col-span-2">
+{{-- Selamat Datang --}}
+<div class="text-center mt-6 mb-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-white">Selamat Datang, {{ Auth::user()->name }}!</h1>
+    <p class="text-gray-500 dark:text-gray-300 mt-2">Silakan mulai proses pengajuan surat dengan mengklik tombol di bawah ini. Pastikan data Anda sudah lengkap dan terverifikasi.</p>
+</div>
+
+{{-- Ajukan Surat --}}
+<div class="flex justify-center mb-6">
+    <a href="{{ route('user.ajukan-surat') }}"
+       class="inline-flex items-center gap-2 bg-primary text-white px-5 py-3 rounded-full shadow-md hover:bg-primary/90 transition duration-200">
+        <i class="ri-mail-add-line text-lg"></i> Ajukan Surat
+    </a>
+</div>
+
+{{-- Data Pengajuan --}}
+<div class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-6 mb-6">
+    <div class="col-span-1">
         <div class="card">
             <div class="p-6">
                 <div class="flex justify-between">
                     <div class="grow overflow-hidden">
-                        <h5 class="text-base/3 text-gray-400 font-normal mt-0" title="Number of Customers">Customers</h5>
-                        <h3 class="text-2xl my-6">54,214</h3>
+                        <h5 class="text-base/3 text-gray-400 font-normal mt-0" title="Jumlah Pengajuan Surat">Pengajuan Surat</h5>
+                        <h3 class="text-2xl my-6">{{ $jumlahPengajuan }}</h3>
                         <p class="text-gray-400 truncate">
-                            <span class="bg-success rounded-md text-xs px-1.5 py-0.5 text-white me-1"><i class="ri-arrow-up-line"></i> 2,541</span>
-                            <span>Since last month</span>
+                            <span class="bg-info rounded-md text-xs px-1.5 py-0.5 text-white me-1"><i class="ri-file-add-line"></i></span>
+                            <span>Total surat yang diajukan</span>
                         </p>
                     </div>
                     <div class="shrink">
-                        <div id="widget-customers" class="apex-charts" data-colors="#47ad77,#e3e9ee"></div>
+                        <div class="text-5xl text-info"><i class="ri-file-list-2-line"></i></div>
                     </div>
                 </div>
             </div> <!-- end p-6-->
         </div> <!-- end card-->
     </div>
 
-    <div class="2xl:col-span-1 lg:col-span-2">
+    <div class="col-span-1">
         <div class="card">
             <div class="p-6">
                 <div class="flex justify-between">
                     <div class="grow overflow-hidden">
-                        <h5 class="text-base/3 text-gray-400 font-normal mt-0" title="Number of Orders">Orders</h5>
-                        <h3 class="text-2xl my-6">7,543</h3>
+                        <h5 class="text-base/3 text-gray-400 font-normal mt-0" title="Jumlah Surat Selesai">Surat Selesai</h5>
+                        <h3 class="text-2xl my-6">{{ $jumlahSelesai }}</h3>
                         <p class="text-gray-400 truncate">
-                            <span class="bg-danger rounded-md text-xs px-1.5 py-0.5 text-white me-1"><i class="ri-arrow-down-line"></i> 1.08%</span>
-                            <span>Since last month</span>
+                            <span class="bg-success rounded-md text-xs px-1.5 py-0.5 text-white me-1"><i class="ri-check-line"></i></span>
+                            <span>Total surat yang telah selesai diproses</span>
                         </p>
                     </div>
-                    <div id="widget-orders" class="apex-charts" data-colors="#3e60d5,#e3e9ee"></div>
+                    <div class="shrink">
+                        <div class="text-5xl text-success"><i class="ri-check-double-line"></i></div>
+                    </div>
                 </div>
             </div> <!-- end p-6-->
         </div> <!-- end card-->
     </div>
 
-    <div class="2xl:col-span-1 lg:col-span-2">
+    <div class="col-span-1">
         <div class="card">
             <div class="p-6">
                 <div class="flex justify-between">
                     <div class="grow overflow-hidden">
-                        <h5 class="text-base/3 text-gray-400 font-normal mt-0" title="Average Revenue">Revenue</h5>
-                        <h3 class="text-2xl my-6">$9,254</h3>
+                        <h5 class="text-base/3 text-gray-400 font-normal mt-0" title="Jumlah Surat Ditolak">Surat Ditolak</h5>
+                        <h3 class="text-2xl my-6">{{ $jumlahDitolak }}</h3>
                         <p class="text-gray-400 truncate">
-                            <span class="bg-danger rounded-md text-xs px-1.5 py-0.5 text-white me-1"><i class="ri-arrow-down-line"></i> 7.00%</span>
-                            <span>Since last month</span>
+                            <span class="bg-danger rounded-md text-xs px-1.5 py-0.5 text-white me-1"><i class="ri-close-line"></i></span>
+                            <span>Pengajuan tidak diterima</span>
                         </p>
                     </div>
-                    <div id="widget-revenue" class="apex-charts" data-colors="#16a7e9,#e3e9ee"></div>
-                </div>
-
-            </div> <!-- end p-6-->
-        </div> <!-- end card-->
-    </div>
-
-    <div class="2xl:col-span-1 lg:col-span-3">
-        <div class="card">
-            <div class="p-6">
-                <div class="flex justify-between">
-                    <div class="grow overflow-hidden">
-                        <h5 class="text-base/3 text-gray-400 font-normal mt-0" title="Growth">Growth</h5>
-                        <h3 class="text-2xl my-6">+ 20.6%</h3>
-                        <p class="text-gray-400 truncate">
-                            <span class="bg-success rounded-md text-xs px-1.5 py-0.5 text-white me-1"><i class="ri-arrow-up-line"></i> 4.87%</span>
-                            <span>Since last month</span>
-                        </p>
+                    <div class="shrink">
+                        <div class="text-5xl text-danger"><i class="ri-close-circle-line"></i></div>
                     </div>
-                    <div id="widget-growth" class="apex-charts" data-colors="#ffc35a,#e3e9ee"></div>
                 </div>
-
-            </div> <!-- end p-6-->
-        </div> <!-- end card-->
-    </div>
-
-    <div class="2xl:col-span-1 lg:col-span-3 md:col-span-2">
-        <div class="card">
-            <div class="p-6">
-                <div class="flex justify-between">
-                    <div class="grow overflow-hidden">
-                        <h5 class="text-base/3 text-gray-400 font-normal mt-0" title="Conversation Ration">Conversation</h5>
-                        <h3 class="text-2xl my-6">9.62%</h3>
-                        <p class="text-gray-400 truncate">
-                            <span class="bg-success rounded-md text-xs px-1.5 py-0.5 text-white me-1"><i class="ri-arrow-up-line"></i> 3.07%</span>
-                            <span>Since last month</span>
-                        </p>
-                    </div>
-                    <div id="widget-conversation" class="apex-charts" data-colors="#f15776,#e3e9ee"></div>
-                </div>
-
             </div> <!-- end p-6-->
         </div> <!-- end card-->
     </div>
 </div>
 
-<div class="grid lg:grid-cols-3 gap-6 mb-6">
-    <div class="lg:col-span-2">
-        <div class="card">
-            <div class="flex card-header justify-between items-center">
-                <h4 class="card-title">Revenue</h4>
-                <div>
-                    <button class="text-gray-600 dark:text-gray-400" data-fc-type="dropdown" data-fc-placement="bottom-end" type="button">
-                        <i class="ri-more-2-fill text-xl"></i>
-                    </button>
-                    <div class="fc-dropdown fc-dropdown-open:opacity-100 opacity-0 min-w-40 z-50 transition-all duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md py-1 hidden">
-                        <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Sales Report</a>
-                        <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Export Report</a>
-                        <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Profit</a>
-                        <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Action</a>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-light/40 border-b border-gray-100 dark:bg-light/5 dark:border-b-gray-700">
-                <div class="flex flex-wrap justify-around items-center text-center">
-                    <div class="w-1/2 lg:w-1/4">
-                        <p class="text-gray-400 mt-6 mb-4"><i class="ri-donut-chart-fill"></i> Current Week</p>
-                        <h3 class="text-2xl font-normal mb-6">
-                            <span>$1705.54</span>
-                        </h3>
-                    </div>
-                    <div class="w-1/2 lg:w-1/4">
-                        <p class="text-gray-400 mt-6 mb-4"><i class="ri-donut-chart-fill"></i> Previous Week</p>
-                        <h3 class="text-2xl font-normal mb-6">
-                            <span>$6,523.25 <i class="ri-corner-right-up-fill text-success"></i></span>
-                        </h3>
-                    </div>
-                    <div class="w-1/2 lg:w-1/4">
-                        <p class="text-gray-400 mt-6 mb-4"><i class="ri-donut-chart-fill"></i> Conversation</p>
-                        <h3 class="text-2xl font-normal mb-6">
-                            <span>8.27%</span>
-                        </h3>
-                    </div>
-                    <div class="w-1/2 lg:w-1/4">
-                        <p class="text-gray-400 mt-6 mb-4"><i class="ri-donut-chart-fill"></i> Customers</p>
-                        <h3 class="text-2xl font-normal mb-6">
-                            <span>69k <i class="ri-corner-right-down-line text-danger"></i></span>
-                        </h3>
-                    </div>
-                </div>
-            </div>
-            <div class="p-6">
-                <div dir="ltr">
-                    <div id="revenue-chart" class="apex-charts mt-1" data-colors="#3e60d5,#47ad77"></div>
-                </div>
-            </div> <!-- end p-6-->
-        </div> <!-- end card-->
-    </div>
-    <div class="col-lg-4">
-        <div class="card">
-            <div class="flex px-6 py-3 justify-between items-center">
-                <h4 class="card-title">Total Sales</h4>
-                <div>
-                    <div>
-                        <button class="text-gray-600 dark:text-gray-400" data-fc-type="dropdown" data-fc-placement="bottom-end" type="button">
-                            <i class="ri-more-2-fill text-xl"></i>
-                        </button>
-                        <div class="fc-dropdown fc-dropdown-open:opacity-100 opacity-0 min-w-40 z-50 transition-all duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md py-1 hidden">
-                            <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Sales Report</a>
-                            <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Export Report</a>
-                            <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Profit</a>
-                            <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Action</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+@php use Carbon\Carbon; @endphp
 
-            <div class="px-5 py-3.5 bg-warning/10 text-warning border-y border-warning/20">
-                Something went wrong. Please <strong><a href="javascript:void(0)" class="font-bold underline">refresh</a></strong> to get new data!
-            </div>
+<div class="relative space-y-6 pb-6">
+    <!-- Center Border Line -->
+    <div class="absolute border-s-2 border border-gray-300 h-full top-0 start-10 md:start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -z-10 dark:border-white/10"></div>
 
-            <div class="p-6 pt-0">
-                <div id="average-sales" class="apex-charts mb-3" data-colors="#3e60d5,#47ad77,#fa5c7c,#16a7e9"></div>
-
-                <div class="mb-1.5">
-                    <h5 class="text-base font-medium mb-2.5">Brooklyn, New York</h5>
-                    <div class="flex items-center gap-2">
-                        <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
-                            <div class="flex flex-col justify-center overflow-hidden bg-primary w-3/4" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <span class="font-bold">72k </span>
-                    </div>
-                </div>
-
-                <div class="mb-1.5">
-                    <h5 class="text-base font-medium mb-2.5">The Castro, San Francisco</h5>
-                    <div class="flex items-center gap-2">
-                        <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
-                            <div class="flex flex-col justify-center overflow-hidden bg-primary w-1/3" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <span class="font-bold">39k</span>
-                    </div>
-                </div>
-
-                <div class="mb-1.5">
-                    <h5 class="text-base font-medium mb-2.5">Kovan, Singapore</h5>
-                    <div class="flex items-center gap-2">
-                        <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
-                            <div class="flex flex-col justify-center overflow-hidden bg-primary w-3/5" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <span class="font-bold">61k </span>
-                    </div>
-                </div>
-            </div> <!-- end p-6-->
-        </div> <!-- end card-->
+    <div class="md:text-center">
+        <h1 class="text-lg py-2 px-4 bg-light inline rounded dark:bg-gray-700">
+            Riwayat Pengajuan Surat
+        </h1>
     </div>
 
-</div>
+    @foreach ($pengajuanSurat as $item)
+        @php
+            $isRight = $loop->iteration % 2 == 0;
+            $tanggal = $item->status == 'Sedang Diverifikasi' ? $item->created_at : $item->tanggal_verifikasi;
+            $tanggalFormatted = Carbon::parse($tanggal)->translatedFormat('d F Y H:i');
+            $bgColor = match($item->status) {
+                'Selesai' => 'bg-success/30 text-success',
+                'Ditolak' => 'bg-danger/30 text-danger',
+                default => 'bg-warning/30 text-warning',
+            };
+        @endphp
 
-<div class="grid grid-cols-12 gap-6">
-    <div class="xl:col-span-5 col-span-12">
-        <div class="card">
-            <div class="card-header flex justify-between items-center">
-                <h4 class="card-title">Top Selling Products</h4>
-                <a href="javascript:void(0);" class="btn btn-sm !text-sm bg-info text-white">Export <i class="ri-download-line ms-1"></i></a>
+        <div class="{{ $isRight ? 'text-start' : 'md:text-end text-start' }}">
+            <div class="absolute start-10 md:start-1/2 -translate-x-1/2 rtl:translate-x-1/2 mt-6">
+                <div class="w-6 h-6 flex justify-center items-center rounded-full {{ $bgColor }}">
+                    <i class="ri-record-circle-fill text-sm"></i>
+                </div>
             </div>
-            <div class="relative overflow-x-auto">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="bg-light/40 border-b border-gray-100 dark:bg-light/5 dark:border-b-gray-700">
-                    <tr>
-                        <th class="py-1.5 px-4">Product</th>
-                        <th class="py-1.5 px-4">Price</th>
-                        <th class="py-1.5 px-4">Orders</th>
-                        <th class="py-1.5 px-4">Avl. Quantity</th>
-                        <th class="py-1.5 px-4">Seller</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="p-4">ASOS Ridley High Waist</td>
-                        <td class="p-4">$79.49</td>
-                        <td class="p-4">82</td>
-                        <td class="p-4">8,540</td>
-                        <td class="p-4">Adidas</td>
-                    </tr>
-                    <tr>
-                        <td class="p-4">Marco Lightweight Shirt</td>
-                        <td class="p-4">$12.5</td>
-                        <td class="p-4">58</td>
-                        <td class="p-4">6,320</td>
-                        <td class="p-4">Puma</td>
-                    </tr>
-                    <tr>
-                        <td class="p-4">Half Sleeve Shirt</td>
-                        <td class="p-4">$9.99</td>
-                        <td class="p-4">254</td>
-                        <td class="p-4">10,258</td>
-                        <td class="p-4">Nike</td>
-                    </tr>
-                    <tr>
-                        <td class="p-4">Lightweight Jacket</td>
-                        <td class="p-4">$69.99</td>
-                        <td class="p-4">560</td>
-                        <td class="p-4">1,020</td>
-                        <td class="p-4">Puma</td>
-                    </tr>
-                    <tr>
-                        <td class="p-4">Marco Sport Shoes</td>
-                        <td class="p-4">$119.99</td>
-                        <td class="p-4">75</td>
-                        <td class="p-4">357</td>
-                        <td class="p-4">Adidas</td>
-                    </tr>
-                    <tr>
-                        <td class="p-4">Custom Women's T-shirts</td>
-                        <td class="p-4">$45.00</td>
-                        <td class="p-4">85</td>
-                        <td class="p-4">135</td>
-                        <td class="p-4">Branded</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="text-center">
-                <a href="#!" class="btn text-primary underline font-bold mb-2">View All</a>
+            <div class="grid grid-cols-2">
+                <div class="{{ $isRight ? 'md:col-start-2 col-span-2' : 'md:col-span-1 col-span-2' }}">
+                    <div class="relative {{ $isRight ? 'md:ms-10 ms-20' : 'md:me-10 md:ms-0 ms-20' }}">
+                        <div class="card p-5">
+                            <h4 class="mb-1.5 text-base">Pengajuan Surat: {{ $item->jenisSurat->nama }}</h4>
+                            <p class="mb-4 text-gray-500 dark:text-gray-200"><small>{{ $tanggalFormatted }}</small></p>
+                            <p class="mb-4 text-gray-500 dark:text-gray-200">Status: 
+                                <strong>
+                                    <span class="inline-block px-2 py-1 rounded-full text-xs font-semibold {{ $bgColor ?? 'bg-gray-100 text-gray-800' }}">
+                                        {{ $item->status }}
+                                    </span>
+                                </strong>
+                            </p>
+                            <a href="{{ route('user.ajukan-surat') }}" class="btn btn-sm bg-light !text-sm text-dark dark:text-white dark:bg-gray-700">📄 Detail</a>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 absolute h-4 w-4 rotate-45 rounded-sm top-7 {{ $isRight ? '-start-2' : 'md:-end-2 md:start-auto -start-2' }}"></div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    @endforeach
 
-    <div class="xl:col-span-7 col-span-12">
-        <div class="card h-full">
-            <div class="flex card-header justify-between items-center !border-0">
-                <h4 class="card-title">Revenue By Locations</h4>
-                <div>
-                    <button class="text-gray-600 dark:text-gray-400" data-fc-type="dropdown" data-fc-placement="bottom-end" type="button">
-                        <i class="ri-more-2-fill text-xl"></i>
-                    </button>
-                    <div class="fc-dropdown fc-dropdown-open:opacity-100 opacity-0 min-w-40 z-50 transition-all duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-md py-1 hidden">
-                        <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Sales Report</a>
-                        <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Export Report</a>
-                        <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Profit</a>
-                        <a class="flex items-center py-1.5 px-5 text-sm text-gray-500 hover:bg-slate-100 hover:text-slate-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300" href="javascript: void(0);">Action</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="p-6">
-                <div class="grid lg:grid-cols-3 gap-6">
-                    <div class="lg:col-span-2">
-                        <div id="world-map-markers" class="my-4"></div>
-                    </div>
-                    <div dir="ltr">
-                        <div id="country-chart" class="apex-charts" data-colors="#47ad77"></div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- end card-->
-    </div>
 </div>
+
 @endsection
 
 @section('script-bottom')

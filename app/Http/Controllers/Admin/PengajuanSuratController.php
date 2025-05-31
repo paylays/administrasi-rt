@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PengajuanSurat;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class PengajuanSuratController extends Controller
@@ -108,6 +109,20 @@ class PengajuanSuratController extends Controller
         $pengajuan->save();
 
         return redirect()->route('admin.pengajuan-surat')->with('success', 'Pengajuan surat telah ditolak.');
+    }
+
+    public function destroy($id)
+    {
+        $pengajuan = PengajuanSurat::findOrFail($id);
+        
+        try {
+            $pengajuan->delete();
+
+            return redirect()->route('admin.pengajuan-surat')->with('success', 'Pengajuan surat berhasil dihapus.');
+        } catch (\Exception $e) {
+            Log::error('Gagal menghapus pengajuan surat: ' . $e->getMessage());
+            return redirect()->route('admin.pengajuan-surat')->with('error', 'Terjadi kesalahan saat menghapus pengajuan surat.');
+        }
     }
 
 }

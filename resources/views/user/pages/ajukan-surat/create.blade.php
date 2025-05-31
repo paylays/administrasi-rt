@@ -25,6 +25,11 @@
             </h5>
 
             <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <!-- NIK Pemohon -->
+                <div class="space-y-2">
+                    <label for="nik_pemohon" class="font-semibold text-gray-500">NIK Pemohon<span class="text-danger">*</span></label>
+                    <input class="form-input" type="text" id="nik_pemohon" name="nik_pemohon" placeholder="Masukkan nama pemohon">
+                </div>
                 <!-- Nama Pemohon -->
                 <div class="space-y-2">
                     <label for="nama" class="font-semibold text-gray-500">Nama Pemohon<span class="text-danger">*</span></label>

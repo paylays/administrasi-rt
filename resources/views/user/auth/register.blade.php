@@ -191,8 +191,8 @@
 
                     <div class="p-9">
                         <div class="text-center mx-auto w-3/4">
-                            <h4 class="text-dark/70 text-center text-lg font-bold dark:text-light/80 mb-2">Free Sign Up</h4>
-                            <p class="text-gray-400 mb-9">Don't have an account? Create your account, it takes less than a minute.</p>
+                            <h4 class="text-dark/70 text-center text-lg font-bold dark:text-light/80 mb-2">Daftar Akun Baru</h4>
+                            <p class="text-gray-400 mb-9">Silakan buat akun Anda sekarang untuk mulai menggunakan layanan</p>
                         </div>
 
                         @if(session('success'))
@@ -219,28 +219,28 @@
                         <form method="POST" action="{{ route('register') }}">
                         @csrf
                             <div class="mb-6 space-y-2">
-                                <label for="name" class="font-semibold text-gray-500">Full Name</label>
-                                <input class="form-input" type="text" id="name" name="name" placeholder="Enter your name">
+                                <label for="name" class="font-semibold text-gray-500">Nama Lengkap</label>
+                                <input class="form-input" type="text" id="name" name="name" placeholder="Masukkan nama lengkap">
                             </div>
 
                             <div class="mb-6 space-y-2">
-                                <label for="email" class="font-semibold text-gray-500">Email address</label>
-                                <input class="form-input" type="email" id="email" name="email" placeholder="Enter your email">
+                                <label for="email" class="font-semibold text-gray-500">Email</label>
+                                <input class="form-input" type="email" id="email" name="email" placeholder="Masukkan email">
                             </div>
 
                             <div class="mb-6 space-y-2">
-                                <label for="password" class="font-semibold text-gray-500">Password</label>
+                                <label for="password" class="font-semibold text-gray-500">Kata Sandi</label>
                                 <div class="flex items-center">
-                                    <input type="password" id="password" name="password" class="form-input rounded-e-none" placeholder="Enter your password">
-                                    <span class="px-3.5 py-1 bg-light/30 dark:bg-slate-700/60 border rounded-e -ms-px dark:border-white/10"><i class="ri-eye-line text-lg"></i></span>
+                                    <input type="password" id="password" name="password" class="form-input rounded-e-none" placeholder="Masukkan kata sandi">
+                                    <span id="togglePassword" class="px-3.5 py-1 bg-light/30 dark:bg-slate-700/60 border rounded-e -ms-px dark:border-white/10"><i class="ri-eye-line text-lg"></i></span>
                                 </div>
                             </div>
 
                             <div class="mb-6 space-y-2">
-                                <label for="password_confirmation" class="font-semibold text-gray-500">Password</label>
+                                <label for="password_confirmation" class="font-semibold text-gray-500">Konfirmasi Kata Sandi</label>
                                 <div class="flex items-center">
-                                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-input rounded-e-none" placeholder="Confirm password">
-                                    <span class="px-3.5 py-1 bg-light/30 dark:bg-slate-700/60 border rounded-e -ms-px dark:border-white/10"><i class="ri-eye-line text-lg"></i></span>
+                                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-input rounded-e-none" placeholder="Masukkan konfirmasi kata sandi">
+                                    <span id="togglePassword" class="px-3.5 py-1 bg-light/30 dark:bg-slate-700/60 border rounded-e -ms-px dark:border-white/10"><i class="ri-eye-line text-lg"></i></span>
                                 </div>
                             </div>
 
@@ -270,6 +270,19 @@
 
     @include('user.layouts.shared/footer-scripts')
 
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            // Toggle icon class (misal pakai remixicon)
+            this.querySelector('i').classList.toggle('ri-eye-line');
+            this.querySelector('i').classList.toggle('ri-eye-off-line');
+        });
+    </script>
 </body>
 
 </html>

@@ -31,10 +31,11 @@
             use App\Models\Warga;
             $user = Auth::user();
             $nikValid = $user->nik && Warga::where('nik', $user->nik)->exists();
+            $bgColor = session('userAvatarBg', 'bg-primary');
         @endphp
 
         <div class="card text-center p-6 mb-6">
-            <div class="w-20 h-20 justify-center items-center flex bg-primary rounded-full p-1 mx-auto">
+            <div class="w-20 h-20 justify-center items-center flex {{ $bgColor }} rounded-full p-1 mx-auto">
                 <span class="text-white text-2xl">{{ strtoupper(substr($user->name, 0, 1)) }}</span>
             </div>
             <h4 class="mb-1 mt-3 text-lg">{{ $user->name }}</h4>
@@ -54,9 +55,16 @@
                 <p class="text-zinc-400 mb-3"><strong>Name :</strong> <span class="ms-2">{{ $user->name }}</span>
                 </p>
 
-                <p class="text-zinc-400 mb-1.5"><strong>Email :</strong> <span class="ms-2 ">{{ $user->email }}</span>
+                <p class="text-zinc-400 mb-3"><strong>Email :</strong> <span class="ms-2 ">{{ $user->email }}</span>
                 </p>
 
+                <div class="mb-1.5">
+                    <form action="{{ route('user.profile.destroy') }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus akun ini? Tindakan ini tidak dapat dibatalkan.')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn bg-danger text-white">Hapus Akun</button>
+                    </form>
+                </div>
             </div>
         </div> <!-- end card -->
     </div>
@@ -68,11 +76,6 @@
                         role="tablist">
                     <button type="button"
                             class="fc-tab-active:bg-primary fc-tab-active:text-white flex-auto py-2 px-4 inline-flex justify-center items-center gap-2 bg-transparent text-center text-sm font-semibold text-gray-500 hover:text-primary dark:hover:text-gray-400 first:rounded-s-md last:rounded-e-md active"
-                            data-fc-target="#fill-and-justify-1" aria-controls="fill-and-justify-1" role="tab">
-                        Aktivitas
-                    </button>
-                    <button type="button"
-                            class="fc-tab-active:bg-primary fc-tab-active:text-white flex-auto py-2 px-4 inline-flex justify-center items-center gap-2 bg-transparent text-center text-sm font-semibold text-gray-500 hover:text-primary dark:hover:text-gray-400 first:rounded-s-md last:rounded-e-md"
                             data-fc-target="#fill-and-justify-2" aria-controls="fill-and-justify-2" role="tab">
                         Ubah Profil
                     </button>
@@ -84,32 +87,7 @@
                 </nav>
 
                 <div class="mt-3">
-                    <div id="fill-and-justify-1" role="tabpanel" aria-labelledby="fill-and-justify-item-1">
-                        <h5 class="text-base uppercase mt-9 mb-2.5"><i class="ri-macbook-line me-1.5"></i>Test Aktivitas
-                        </h5>
-
-                        <div class="py-5 relative">
-                            <div class="relative">
-                                <div
-                                    class="absolute bg-light bottom-0 left-[9px] top-5 w-0.5 z-0 dark:bg-gray-700"></div>
-                                <i class="ri-record-circle-line float-left h-5 w-5 rounded-full border-2 border-transparent text-xs text-center leading-4 bg-info text-white"></i>
-                                <div class="ms-8">
-                                    <h5 class="text-base/none mb-1.5">Lead designer / Developer</h5>
-                                    <p class="text-sm">websitename.com <span
-                                            class="ms-3 text-xs">Year: 2015 - 18</span></p>
-                                    <p class="text-gray-500 mt-3 pb-6">Everyone realizes why a new common language
-                                        would be desirable: one could refuse to pay expensive translators.
-                                        To achieve this, it would be necessary to have uniform grammar,
-                                        pronunciation and more common words.
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- timeline Designer/Devloper -->
-                        </div>
-                        <!-- end timeline -->
-                    </div>
-
-                    <div id="fill-and-justify-2" class="hidden" role="tabpanel" aria-labelledby="fill-and-justify-item-2">
+                    <div id="fill-and-justify-2" role="tabpanel" aria-labelledby="fill-and-justify-item-2">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         
                         @php

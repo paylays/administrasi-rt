@@ -28,15 +28,35 @@
             </li>
             
             <li class="menu-title">Manajemen Surat</li>
-            
+
             <li class="menu-item">
-                <a href="{{ route('admin.pengajuan-surat') }}" class="menu-link">
+                <a href="javascript:void(0)" data-fc-type="collapse" class="menu-link">
                     <span class="menu-icon">
                         <i class="ri-calendar-event-line"></i>
                     </span>
                     <span class="menu-text"> Pengajuan Surat </span>
+                    <span class="menu-arrow"></span>
                 </a>
+
+                <ul class="sub-menu hidden">
+                    <li class="menu-item">
+                        <a href="{{ route('admin.pengajuan-surat') }}" class="menu-link">
+                            <span class="menu-text">Sedang Diverifikasi</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('admin.pengajuan-surat.selesai') }}" class="menu-link">
+                            <span class="menu-text">Selesai</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('admin.pengajuan-surat.ditolak') }}" class="menu-link">
+                            <span class="menu-text">Ditolak</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
+            
             <li class="menu-item">
                 <a href="{{ route('admin.jenis-surat') }}" class="menu-link">
                     <span class="menu-icon">

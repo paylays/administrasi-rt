@@ -19,7 +19,9 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
-    Route::get('/pengajuan-surat', [PengajuanSuratController::class, 'index'])->name('admin.pengajuan-surat');
+    Route::get('/pengajuan-surat/sedang-diverifikasi', [PengajuanSuratController::class, 'index'])->name('admin.pengajuan-surat');
+    Route::get('/pengajuan-surat/selesai', [PengajuanSuratController::class, 'statusSuratSelesai'])->name('admin.pengajuan-surat.selesai');
+    Route::get('/pengajuan-surat/ditolak', [PengajuanSuratController::class, 'statusSuratDitolak'])->name('admin.pengajuan-surat.ditolak');
     Route::get('/pengajuan-surat/{pengajuan}/verifikasi', [PengajuanSuratController::class, 'lihatVerifikasi'])->name('admin.pengajuan-surat.verifikasi');
 
     Route::get('/pengajuan-surat/preview/{id}', [PengajuanSuratController::class, 'previewSurat'])->name('admin.pengajuan-surat.preview');
@@ -30,7 +32,6 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
 
     Route::get('/jenis-surat', [JenisSuratController::class, 'index'])->name('admin.jenis-surat');
     Route::get('/jenis-surat/preview/{id}', [JenisSuratController::class, 'preview'])->name('admin.jenis-surat.preview');
-    Route::get('/jenis-surat/preview-surat-baru', [JenisSuratController::class, 'previewSuratBaru'])->name('admin.jenis-surat.preview-surat-baru');
 
     Route::get('/data-warga', [WargaController::class, 'index'])->name('admin.data-warga');
     Route::get('/data-warga/create', [WargaController::class, 'create'])->name('admin.data-warga.create');

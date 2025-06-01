@@ -22,7 +22,6 @@
                         <i class="ri-dashboard-line"></i>
                     </span>
                     <span class="menu-text"> Dashboard </span>
-                    <span class="badge bg-success rounded-full">2</span>
                 </a>
             </li>
             

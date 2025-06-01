@@ -162,7 +162,7 @@ input:focus {
 
         @php
             use Carbon\Carbon;
-            $tanggal_lahir = isset($dataPengajuan['tanggal_lahir']) ? Carbon::parse($dataPengajuan['tanggal_lahir'])->translatedFormat('j F Y') : '-';
+            $tanggal_lahir = isset($dataPengajuan['tanggal_lahir']) ? Carbon::parse($dataPengajuan['tanggal_lahir'])->locale('id')->translatedFormat('j F Y') : '-';
 
             $keperluanSurat = $dataPengajuan['keperluan_surat'] ?? [];
             if (is_string($keperluanSurat)) {

@@ -31,7 +31,7 @@
         <!-- Tabel Pengajuan Surat -->
 
         <div class="justify-between items-center mb-4">
-            <h3 class="card-title mb-4">Table pengajuan surat oleh warga dengan status <strong class="text-primary uppercase">Sedang Diverifikasi</strong></h3>
+            <h3 class="card-title mb-4">Table pengajuan surat oleh warga dengan status <strong class="text-success uppercase">Selesai</strong></h3>
         </div>
 
         <div class="overflow-x-auto">
@@ -132,7 +132,7 @@
                             @empty
                                 <tr>
                                     <td colspan="8" class="px-4 py-4 text-center text-sm text-gray-500 dark:text-gray-300">
-                                        Tidak ada surat yang butuh diverifikasi.
+                                        Tidak ada surat status selesai.
                                     </td>
                                 </tr>
                             @endforelse
@@ -142,7 +142,7 @@
             </div>
         </div>
         <p class="mt-4 text-sm text-gray-600 dark:text-gray-300">
-            Menampilkan total <span class="font-semibold">{{ $pengajuans->count() }}</span> surat yang butuh diverifikasi.
+            Menampilkan total <span class="font-semibold">{{ $pengajuans->count() }}</span> surat status selesai.
         </p>
 
         <!-- End Table Pengajuan Surat -->

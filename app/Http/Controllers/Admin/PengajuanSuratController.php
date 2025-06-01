@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\PengajuanSurat;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -14,10 +15,31 @@ class PengajuanSuratController extends Controller
     public function index()
     {
         $pengajuans = PengajuanSurat::with(['user', 'jenisSurat'])
+            ->where('status', 'Sedang Diverifikasi')
             ->orderBy('created_at', 'desc')
             ->get();
 
         return view('admin.pages.pengajuan-surat.index', compact('pengajuans'));
+    }
+
+    public function statusSuratSelesai()
+    {
+        $pengajuans = PengajuanSurat::with(['user', 'jenisSurat'])
+            ->where('status', 'Selesai')    
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('admin.pages.pengajuan-surat.status-surat.selesai', compact('pengajuans'));
+    }
+
+    public function statusSuratDitolak()
+    {
+        $pengajuans = PengajuanSurat::with(['user', 'jenisSurat'])
+            ->where('status', 'Ditolak')    
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('admin.pages.pengajuan-surat.status-surat.ditolak', compact('pengajuans'));
     }
 
     public function lihatVerifikasi($id)
@@ -32,7 +54,7 @@ class PengajuanSuratController extends Controller
         $pengajuan = PengajuanSurat::with(['user', 'jenisSurat'])->findOrFail($id);
 
         $dataPengajuan = collect($pengajuan->data_pengajuan);
-        \Carbon\Carbon::setLocale('id');
+        Carbon::setLocale('id');
 
         $pdf = Pdf::loadView('admin.pages.jenis-surat.template-surat.template-resmi', compact('pengajuan', 'dataPengajuan'))
             ->setPaper('f4', 'portrait');
@@ -67,8 +89,11 @@ class PengajuanSuratController extends Controller
         }
 
         $dataPengajuan = collect($pengajuan->data_pengajuan);
-        $tanggalSurat = now()->translatedFormat('d F Y');
-        $pdf = Pdf::loadView('admin.pages.jenis-surat.template-surat.template-resmi', compact('pengajuan', 'dataPengajuan'));
+        $tanggalSurat = Carbon::parse($pengajuan->tanggal_verifikasi)
+            ->locale('id')
+            ->timezone('Asia/Makassar')
+            ->translatedFormat('d F Y');
+        $pdf = Pdf::loadView('admin.pages.jenis-surat.template-surat.template-resmi', compact('pengajuan', 'dataPengajuan', 'tanggalSurat'));
 
         $fileName = 'surat_' . $pengajuan->id . '.pdf';
         $path = storage_path('app/public/surat/' . $fileName);
@@ -77,7 +102,7 @@ class PengajuanSuratController extends Controller
         $pengajuan->file_surat = 'surat/' . $fileName;
         $pengajuan->save();
 
-        return redirect()->route('admin.pengajuan-surat')->with('success', 'Pengajuan berhasil diverifikasi dan surat telah digenerate.');
+        return redirect()->route('admin.pengajuan-surat.selesai')->with('success', 'Pengajuan berhasil diverifikasi dan surat siap diunduh.');
     }
 
     public function lihatSuratSelesai($id)
@@ -108,7 +133,7 @@ class PengajuanSuratController extends Controller
         $pengajuan->tanggal_verifikasi = now();
         $pengajuan->save();
 
-        return redirect()->route('admin.pengajuan-surat')->with('success', 'Pengajuan surat telah ditolak.');
+        return redirect()->route('admin.pengajuan-surat.ditolak')->with('success', 'Pengajuan surat telah ditolak.');
     }
 
     public function destroy($id)
@@ -118,7 +143,7 @@ class PengajuanSuratController extends Controller
         try {
             $pengajuan->delete();
 
-            return redirect()->route('admin.pengajuan-surat')->with('success', 'Pengajuan surat berhasil dihapus.');
+            return redirect()->back()->with('success', 'Pengajuan surat berhasil dihapus.');
         } catch (\Exception $e) {
             Log::error('Gagal menghapus pengajuan surat: ' . $e->getMessage());
             return redirect()->route('admin.pengajuan-surat')->with('error', 'Terjadi kesalahan saat menghapus pengajuan surat.');

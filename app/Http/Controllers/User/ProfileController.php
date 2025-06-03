@@ -40,6 +40,7 @@ class ProfileController extends Controller
             }
 
             $user->nik = $nik;
+            $user->nik_verified = 1;
             $user->save();
 
             return redirect()->route('user.profile')->with('success', 'NIK berhasil diverifikasi.');

@@ -42,7 +42,7 @@
                             <tr>
                                 <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">No</th>
                                 <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">ID Pengajuan</th>
-                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">NIK Pemohon</th>
+                                <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">No. Surat</th>
                                 <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Nama Pemohon</th>
                                 <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Keperluan Surat</th>
                                 <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">Status</th>
@@ -55,7 +55,7 @@
                             <tr>
                                 <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $index + 1 }}</td>
                                 <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->pengajuan_id }}</td>
-                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->data_pengajuan['nik_pemohon'] ?? '-' }}</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->nomor_surat }}</td>
                                 <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">{{ $item->data_pengajuan['nama'] ?? '-' }}</td>
                                 <td class="px-4 py-4 text-sm text-gray-700 dark:text-gray-200">
                                     @php

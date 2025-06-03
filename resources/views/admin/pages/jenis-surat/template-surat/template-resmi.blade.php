@@ -256,9 +256,8 @@ input:focus {
 
         <div class="signature">
             <p><b>KETUA RT. 036</b></p>
-            <br><br><br>
             @if($pengajuan->file_ttd)
-                <img src="{{ public_path('storage/' . $pengajuan->file_ttd) }}" alt="Tanda Tangan" style="height: 200px;">
+                <img src="{{ public_path('storage/' . $pengajuan->file_ttd) }}" alt="Tanda Tangan" style="height: 150px;">
             @endif
             <p><b><span class="underline">H.</span> <span class="underline">SAMSU DUHA</span></b></p>
         </div>
